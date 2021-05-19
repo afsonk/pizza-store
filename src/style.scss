@@ -68,7 +68,7 @@ body {
   min-width: 100px;
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.8s ease-in-out, border-color 0.8s ease-in-out;
+  transition: all .1s ease-in-out;
   border: 1px solid transparent;
 
   &__delimiter {
@@ -94,6 +94,80 @@ body {
     span {
       font-weight: 600;
       font-size: 16px;
+    }
+  }
+
+  &:hover{
+    background-color: #e75c00;
+  }
+  &:active{
+    background-color: #cd4d00;
+  }
+}
+
+.content__top{
+  display: flex;
+  justify-content: space-between;
+  padding: 1.3rem 0;
+}
+.categories{
+  display: flex;
+  list-style: none;
+  grid-gap: 10px;
+}
+.category__item{
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0.6rem 1.6rem;
+  background-color: $light-grey;
+  border-radius: 20px;
+  transition: .1s linear;
+  &:hover{
+    background-color: #e2e2e2;
+  }
+  &:active{
+    background-color: #cdcdcd;
+  }
+  &.active{
+    color: #fff;
+    background-color: #232323;
+  }
+}
+.sort{
+  position: relative;
+  display: flex;
+  align-items: center;
+  b{
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-left: 10px;
+  }
+  span{
+    font-size: 1.2rem;
+    margin-left: 5px;
+    color: $orange;
+    text-decoration: dashed;
+  }
+}
+.sort__popup{
+  position: absolute;
+  width: 160px;
+  padding: 5px 0;
+  right: 0;
+  bottom: -100px;
+  background-color: #fff;
+  box-shadow: 0px 5px 15px rgb(0 0 0 / 9%);
+  border-radius: 10px;
+  ul{
+    list-style: none;
+    color: $black;
+    font-size: 1.1rem;
+    li{
+      display: block;
+      width: 100%;
+      border-radius: 10px;
+      padding: 5px 30px;
     }
   }
 }
