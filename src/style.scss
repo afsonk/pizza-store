@@ -1,8 +1,13 @@
+@import "components/shared/style";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Nunito', sans-serif;
+}
+a{
+  text-decoration: none;
+  color: inherit;
 }
 html{
   font-size: 15px;
@@ -20,16 +25,75 @@ body {
   margin: 0 auto;
   padding: 0 15px;
 }
+
 .header__inner{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
 }
-
-.logo{
+.header__logo{
+  display: flex;
+  align-items: center;
+  grid-column-gap: 5px;
+  text-decoration: none;
+}
+.logo__image{
+  width: 100%;
+  max-width: 65px;
+  height: 65px;
   display: block;
 }
+.logo__text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h1{
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 26px;
+    color: $black;
+    font-weight: 800;
+    margin: 3px 0;
+  }
+  p{
+    color: $grey;
+  }
+}
+.button{
+  display: inline-block;
+  background-color: $orange;
+  border-radius: 30px;
+  padding: 10px 20px;
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.8s ease-in-out, border-color 0.8s ease-in-out;
+  border: 1px solid transparent;
 
-.logo__image{
-  width: 100px;
-  height: 100px;
+  &__delimiter {
+    width: 1px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.25);
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+
+  &--cart {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    line-height: 23px;
+    padding: 12px 25px;
+
+    svg {
+      margin-right: 8px;
+      margin-bottom: 1px;
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
 }

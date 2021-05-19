@@ -1,5 +1,6 @@
 import Container from "../shared/Container"
-import Logo from "./Logo";
+import Logo from "./Logo"
+import HeaderCart from "./HeaderCart"
 
 function Header() {
     return (
@@ -7,6 +8,7 @@ function Header() {
             <Container>
                 <div className={'header__inner'}>
                     <Logo/>
+                    <HeaderCart/>
                 </div>
             </Container>
         </header>
