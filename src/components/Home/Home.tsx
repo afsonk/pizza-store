@@ -3,6 +3,7 @@ import Categories from "./Categories"
 import Container from "../shared/Container"
 import Sort from "./Sort"
 import ContentTitle from "./ContentTitle"
+import ContentItem from "./ContentItem"
 
 function Home() {
     const categories = ['Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed']
@@ -15,6 +16,9 @@ function Home() {
                     <Sort/>
                 </div>
                 <ContentTitle activeCategory={categories[activeCategory!]}/>
+                <div className={'content__list'}>
+                    <ContentItem/>
+                </div>
             </Container>
         </main>
     )
