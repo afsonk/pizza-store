@@ -2,7 +2,6 @@ import classnames from "classnames"
 
 
 function SortArrow({isVisible}: {isVisible: boolean}){
-    console.log(isVisible)
     return(
         <svg className={classnames('sort__arrow',{
             'active': isVisible

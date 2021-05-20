@@ -1,24 +1,23 @@
 import classnames from "classnames"
-import {useState} from "react"
 
 type Props = {
-    categories: Array<string>
+    categories: Array<string>,
+    activeCategory: null | number,
+    setActiveCategory: (index: number | null) => void
 }
 
-function Categories({categories}: Props) {
-    const [active, setActive] = useState<null | number>(null)
-
+function Categories({categories, activeCategory, setActiveCategory}: Props) {
     return (
         <ul className={'categories'}>
             <li className={classnames('category__item', {
-                'active': active === null})}
-                onClick={() => setActive(null)}>All</li>
+                'active': activeCategory === null})}
+                onClick={() => setActiveCategory(null)}>All</li>
             {
                 categories.map((item, index) => {
                    return <li className={classnames('category__item',{
-                       'active': active === index})}
+                       'active': activeCategory === index})}
                               key={item}
-                              onClick={() => setActive(index)}>{item}</li>
+                              onClick={() => setActiveCategory(index)}>{item}</li>
                 })
             }
         </ul>
