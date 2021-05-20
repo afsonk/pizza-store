@@ -1,32 +1,75 @@
+import {ResponseType} from "../shared/types"
+import classnames from "classnames"
+import {useEffect, useState} from "react"
+
 type ContentTypes = {
     [key: string]: string[]
 }
 
-function ContentItem() {
-    const contentTypes:ContentTypes = {
+function ContentItem({...item}: ResponseType) {
+    const [selectedSize, setSelectedSize] = useState(item.sizes[0])
+    const [selectedDough, setSelectedDough] = useState(item.types[0])
+    const [activePrice, setActivePrice] = useState(0)
+
+    const contentTypes: ContentTypes = {
         sizes: ['small', 'medium', 'large'],
-        dough: ['traditional', 'slim']
+        doughTypes: ['traditional', 'slim']
     }
+
+    const onPageLoad = () => {
+        const initialSize = item.sizes.find(() => selectedSize === item.sizes[0])
+        const index = contentTypes.sizes.indexOf(initialSize!)
+        setActivePrice(index)
+    }
+    const handleSizeClick = (size: string, index: number): void => {
+        setSelectedSize(size)
+        setActivePrice(index)
+    }
+
+    const getItemPrice = (activePrice: number): number => {
+        return item.price[activePrice]
+    }
+    const getItemImage = (num: number): string => {
+        return item.imageUrl[num]
+    }
+
+    useEffect(() => {
+        onPageLoad()
+    },[])
+
     return (
         <div className={'content__item'}>
             <img className={'content__item-image'}
-                 src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+                 src={getItemImage(selectedDough)}
                  alt="pizza"/>
-            <h2 className={'content__item-title'}>Gavaian</h2>
+            <h2 className={'content__item-title'}>{item.name}</h2>
             <div className={'content-types'}>
                 <ul className={'content-types-list content-types__sizes'}>
                     {
-                        contentTypes.sizes.map(item => <li key={item}>{item}</li>)
+                        contentTypes.sizes.map((size, index) => <li
+                            className={classnames({
+                                'active': size === selectedSize,
+                                'disabled': !item.sizes.includes(size),
+                            })}
+                            onClick={() => handleSizeClick(size, index)}
+                            key={size}>{size}</li>)
                     }
                 </ul>
                 <ul className={'content-types-list content-types__dough'}>
                     {
-                        contentTypes.dough.map(item => <li key={item}>{item}</li>)
+                        contentTypes.doughTypes.map((dough, index) => <li
+                            className={classnames({
+                                'active': index === selectedDough,
+                                'disabled': !item.types.includes(index)
+                            })}
+                            key={dough}
+                            onClick={() => setSelectedDough(index)}
+                        >{dough}</li>)
                     }
                 </ul>
             </div>
             <footer className={'item-bottom content-item__bottom'}>
-                <span className={'item-bottom__price'}>20 USD</span>
+                <span className={'item-bottom__price'}>{getItemPrice(activePrice)} USD</span>
                 <button className={'item-bottom__cart button button--cart'}>
                     <span>Add to cart</span>
                 </button>

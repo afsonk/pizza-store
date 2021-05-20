@@ -228,15 +228,20 @@ body {
 
 .content__list {
   display: flex;
+  flex-wrap: wrap;
+  grid-gap: 5px;
 }
 
 .content__item {
+  max-width: 315px;
   padding: 10px;
   border-radius: 6px;
   transition: .1s linear;
+
   &:hover{
   box-shadow: RGB(6 5 50 / 15%) 0px 4px 22px -6px;
   }
+
   &-image {
     max-width: 260px;
     width: 100%;
@@ -245,6 +250,7 @@ body {
 
   &-title {
     text-align: center;
+    margin-bottom: 1rem;
   }
 }
 
@@ -270,7 +276,8 @@ body {
       box-shadow: RGB(6 5 50 / 19%) 0px 6px 20px;
     }
     &:hover{
-      font-weight: 500;
+      background-color: #fff;
+      box-shadow: RGB(6 5 50 / 19%) 0px 6px 20px;
     }
     &.disabled{
       pointer-events: none;

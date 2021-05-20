@@ -1,0 +1,131 @@
+{
+  "pizzas": [
+    {
+      "id": 0,
+      "imageUrl": ["https://dodopizza-a.akamaihd.net/static/Img/Products/a386dd626cab472db3238bf88b1313cb_584x584.jpeg",
+        "https://dodopizza-a.akamaihd.net/static/Img/Products/cf75e2de43ed4093b3cd697bd1809d63_584x584.jpeg"
+      ],
+      "name": "Pepperoni fresh",
+      "types": [0, 1],
+      "sizes": ["small", "medium", "large"],
+      "price": [10, 15, 20],
+      "category": 0,
+      "rating": 4
+    },
+    {
+      "id": 1,
+      "imageUrl": ["https://dodopizza-a.akamaihd.net/static/Img/Products/f2e043398dad4bd5b42f4ef1990439c2_584x584.jpeg",
+      "https://dodopizza-a.akamaihd.net/static/Img/Products/95f1a39790ac4743bf8159799e58fe12_584x584.jpeg"],
+      "name": "Cheesy",
+      "types": [0],
+      "sizes": ["small", "large"],
+      "price": [7, 15, 24],
+      "category": 1,
+      "rating": 6
+    },
+    {
+      "id": 2,
+      "imageUrl": ["https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/6652fec1-04df-49d8-8744-232f1032c44b.jpg",
+      "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/3793bc27-54e8-463d-a325-a1a325255517.jpg"
+      ],
+      "name": "Chicken bbq",
+      "types": [0],
+      "sizes": ["small", "large"],
+      "price": [15, 20, 27],
+      "category": 1,
+      "rating": 4
+    },
+    {
+      "id": 3,
+      "imageUrl": ["https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/af553bf5-3887-4501-b88e-8f0f55229429.jpg",
+        "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/4c64dfbb-180f-4285-8029-9d302aa65cd2.jpg"
+      ],
+      "name": "Sweet and sour chicken",
+      "types": [1],
+      "sizes": ["small", "medium", "large"],
+      "price": [14, 22, 43],
+      "category": 2,
+      "rating": 2
+    },
+    {
+      "id": 4,
+      "imageUrl": ["https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+      "https://dodopizza-a.akamaihd.net/static/Img/Products/b42fbff70d844e359dccaf5786df5f3d_584x584.jpeg"
+      ],
+      "name": "Cheeseburger pizza",
+      "types": [0, 1],
+      "sizes": ["small", "medium", "large"],
+      "price": [12, 19, 25],
+      "category": 3,
+      "rating": 8
+    },
+    {
+      "id": 5,
+      "imageUrl": ["https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/68c66460-5054-4227-8ecf-274bb4874fe2.jpg",
+            "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/79cbcd4d-647a-4c25-9c57-1065ce40fdd7.jpg"
+      ],
+      "name": "Double pepperony",
+      "types": [0],
+      "sizes": ["medium", "large"],
+      "price": [10, 14, 20],
+      "category": 2,
+      "rating": 2
+    },
+    {
+      "id": 6,
+      "imageUrl": ["https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/d2e337e9-e07a-4199-9cc1-501cc44cb8f8.jpg",
+        "https://dodopizza-a.akamaihd.net/static/Img/Products/cf75e2de43ed4093b3cd697bd1809d63_584x584.jpeg"
+      ],
+      "name": "Pepperony",
+      "types": [0, 1],
+      "sizes": ["small","medium", "large"],
+      "price": [15, 24, 32],
+      "category": 1,
+      "rating": 9
+    },
+    {
+      "id": 7,
+      "imageUrl": ["https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/d48003cd-902c-420d-9f28-92d9dc5f73b4.jpg",
+        "https://dodopizza-a.akamaihd.net/static/Img/Products/80a1f29cb1f7432581778d466725e0bf_584x584.jpeg"],
+      "name": "Margherita",
+      "types": [0, 1],
+      "sizes": ["small","medium", "large"],
+      "price": [10, 16, 17],
+      "category": 4,
+      "rating": 10
+    },
+    {
+      "id": 8,
+      "imageUrl": ["https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/ec29465e-606b-4a04-a03e-da3940d37e0e.jpg",
+        "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/d4ad6b8c-6881-4f72-b517-7c22689ffdd0.jpg"],
+      "name": "Four seasons",
+      "types": [0, 1],
+      "sizes": ["small","medium", "large"],
+      "price": [15, 22, 30],
+      "category": 5,
+      "rating": 10
+    },
+    {
+      "id": 9,
+      "imageUrl": ["https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/30367198-f3bd-44ed-9314-6f717960da07.jpg",
+        "https://dodopizza-a.akamaihd.net/static/Img/Products/7209fcf80a9b4a75a0d61d6ba8ae298a_584x584.jpeg"],
+      "name": "Vegetables and mushrooms",
+      "types": [0, 1],
+      "sizes": ["small","medium", "large"],
+      "price": [35, 40, 50],
+      "category": 5,
+      "rating": 7
+    },
+    {
+      "id": 10,
+      "imageUrl": ["https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/964465ca-7a11-4bf5-a85d-d9f3fe3d7ff9.jpg",
+        "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/eccca5ba-3931-4b70-a18c-1af0aa855a11.jpg"],
+      "name": "Ham and cheese",
+      "types": [0, 1],
+      "sizes": ["small","medium", "large"],
+      "price": [14, 23, 27],
+      "category": 0,
+      "rating": 5
+    }
+  ]
+}
