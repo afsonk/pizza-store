@@ -1,20 +1,14 @@
-import {ResponseType} from "../shared/types"
 import classnames from "classnames"
 import {useEffect, useState} from "react"
+import {ContentTypes, ResponseType} from "../shared/types"
 
-type ContentTypes = {
-    [key: string]: string[]
-}
 
-function ContentItem({...item}: ResponseType) {
-    const [selectedSize, setSelectedSize] = useState(item.sizes[0])
-    const [selectedDough, setSelectedDough] = useState(item.types[0])
-    const [activePrice, setActivePrice] = useState(0)
+type Props = {contentTypes: ContentTypes} & ResponseType
 
-    const contentTypes: ContentTypes = {
-        sizes: ['small', 'medium', 'large'],
-        doughTypes: ['traditional', 'slim']
-    }
+function ContentItem({contentTypes, ...item}: Props) {
+    const [selectedSize, setSelectedSize] = useState<string>(() => item.sizes[0])
+    const [selectedDough, setSelectedDough] = useState<number>(() => item.types[0])
+    const [activePrice, setActivePrice] = useState<number>(0)
 
     const onPageLoad = () => {
         const initialSize = item.sizes.find(() => selectedSize === item.sizes[0])

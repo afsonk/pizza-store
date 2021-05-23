@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import Categories from "./Categories"
 import Container from "../shared/Container"
 import Sort from "./Sort"
@@ -8,6 +8,8 @@ import PizzasList from "./PizzasList"
 function Home() {
     const categories = ['Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed']
     const [activeCategory, setActiveCategory] = useState<null | number>(null)
+
+
     return (
         <main className={'content'}>
             <Container>

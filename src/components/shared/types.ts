@@ -11,5 +11,8 @@ const apiResponse = {
     "rating": 9
 }
 
-
 export type ResponseType = typeof apiResponse
+
+export type ContentTypes = {
+    [key: string]: string[]
+}
