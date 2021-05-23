@@ -1,19 +1,27 @@
 import classnames from "classnames"
 import {useEffect, useRef, useState} from "react"
 import SortArrow from "./SortArrow"
+import {setActiveSort, actionsType} from "../../redux/actionCreators"
+import {SortType} from "../shared/types"
+import {Dispatch} from "redux"
 
 
-function Sort() {
-    const sort = ['popularity', 'price', 'alphabet']
-    const [activeSort, setActiveSort] = useState<string>(sort[0])
+type Props = {
+    sort: Array<SortType>,
+    activeSort: SortType,
+    dispatch: Dispatch<actionsType>
+}
+
+function Sort({sort, activeSort, dispatch}: Props) {
     const [isVisible, setIsVisible] = useState(false)
 
     const sortRef = useRef<HTMLSpanElement>(null)
 
-    const handleSortClick = (item: string): void => {
-        setActiveSort(item)
+    const handleSortClick = (item: SortType): void => {
+        dispatch(setActiveSort(item))
         handleSortLabelClick()
     }
+
     const handleSortLabelClick = ():void => {
         setIsVisible(prevState => !prevState)
     }

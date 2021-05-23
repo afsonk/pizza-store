@@ -1,10 +1,12 @@
 import {applyMiddleware,combineReducers,createStore, compose} from "redux"
 import thunk from 'redux-thunk'
-import pizzasReducer from "./pizzas"
+import pizzasReducer from "./pizzasReducer"
+import filterReducer from "./filterReducer"
 
 
 const rootReducer = combineReducers({
-    pizzaItems:pizzasReducer
+    pizzaItems: pizzasReducer,
+    filterCat: filterReducer
 })
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

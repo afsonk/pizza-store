@@ -19,7 +19,7 @@
       "name": "Cheesy",
       "types": [0],
       "sizes": ["small", "large"],
-      "price": [7, 15, 24],
+      "price": [11, 15, 24],
       "category": 1,
       "rating": 6
     },
@@ -67,7 +67,7 @@
       "name": "Double pepperony",
       "types": [0],
       "sizes": ["medium", "large"],
-      "price": [10, 14, 20],
+      "price": [13, 14, 20],
       "category": 2,
       "rating": 2
     },

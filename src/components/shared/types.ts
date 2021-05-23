@@ -16,3 +16,5 @@ export type ResponseType = typeof apiResponse
 export type ContentTypes = {
     [key: string]: string[]
 }
+
+export type SortType = 'rating' | 'price' | 'name'

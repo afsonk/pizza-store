@@ -3,21 +3,21 @@ import classnames from "classnames"
 type Props = {
     categories: Array<string>,
     activeCategory: null | number,
-    setActiveCategory: (index: number | null) => void
+    setCategory: (payload: number | null) => void
 }
 
-function Categories({categories, activeCategory, setActiveCategory}: Props) {
+function Categories({categories, activeCategory, setCategory}: Props) {
     return (
         <ul className={'categories'}>
             <li className={classnames('category__item', {
                 'active': activeCategory === null})}
-                onClick={() => setActiveCategory(null)}>All</li>
+                onClick={() => setCategory(null)}>All</li>
             {
                 categories.map((item, index) => {
                    return <li className={classnames('category__item',{
                        'active': activeCategory === index})}
                               key={item}
-                              onClick={() => setActiveCategory(index)}>{item}</li>
+                              onClick={() => setCategory(index)}>{item}</li>
                 })
             }
         </ul>
