@@ -1,20 +1,20 @@
 import {useEffect} from "react"
 import ContentItem from "./ContentItem"
-import {ContentTypes, ResponseType} from "../shared/types"
+import {ContentTypes} from "../shared/types"
 import {useDispatch, useSelector} from "react-redux"
-import {fetchPizzas} from "../../redux/actionCreators"
+import {fetchPizzas, toggleIsLoading} from "../../redux/actionCreators"
 import {appStateType} from "../../redux"
-
+import LoadingBlock from "./LoadingBlock"
 
 
 function PizzasList() {
-    const pizzas = useSelector((state: appStateType) => state.pizzaItems.pizzas)
-    const {sortBy,activeCategory} = useSelector((state: appStateType) => state.filterCat)
+    const {pizzas, isLoading} = useSelector((state: appStateType) => state.pizzaItems)
+    const {sortBy, activeCategory} = useSelector((state: appStateType) => state.filterCat)
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(fetchPizzas(activeCategory, sortBy.name, sortBy.order ))
+    useEffect( () => {
+         dispatch(fetchPizzas(activeCategory, sortBy.name, sortBy.order))
     }, [activeCategory, sortBy])
 
     const contentTypes: ContentTypes = {
@@ -25,7 +25,11 @@ function PizzasList() {
     return (
         <div className={'content__list'}>
             {
-                pizzas!.map(item => {
+                isLoading
+                    ? Array(12).fill(0).map((_,index) => {
+                        return <LoadingBlock key={index}/>
+                    })
+                    : pizzas!.map(item => {
                     return <ContentItem key={item.id} contentTypes={contentTypes}
                                         {...item}
                     />
