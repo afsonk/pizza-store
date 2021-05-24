@@ -1,5 +1,5 @@
 import {actionsType} from "./actionCreators"
-import {ResponseType} from "../components/shared/types"
+import {ResponseType} from "../shared/types"
 
 
 export type PizzasState = {

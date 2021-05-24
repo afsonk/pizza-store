@@ -1,7 +1,7 @@
 import classnames from "classnames"
 import {useEffect, useRef, useState} from "react"
 import SortArrow from "./SortArrow"
-import {setActiveSort, actionsType} from "../../redux/actionCreators"
+import {setActiveSort, actionsType} from "../redux/actionCreators"
 import {SortType} from "../shared/types"
 import {Dispatch} from "redux"
 

@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux"
-import {appStateType} from "../../redux"
-import {setActiveCategory} from "../../redux/actionCreators"
+import {appStateType} from "../redux"
+import {setActiveCategory} from "../redux/actionCreators"
 import Categories from "./Categories"
 import Container from "../shared/Container"
 import Sort from "./Sort"

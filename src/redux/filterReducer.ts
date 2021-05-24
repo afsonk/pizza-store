@@ -1,5 +1,5 @@
 import {actionsType} from "./actionCreators"
-import {SortType} from "../components/shared/types"
+import {SortType} from "../shared/types"
 
 
 export type StateType = {

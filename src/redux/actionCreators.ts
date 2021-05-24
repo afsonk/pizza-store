@@ -1,6 +1,6 @@
 import axios from "axios"
 import {Dispatch} from 'redux'
-import {ResponseType, SortType} from "../components/shared/types"
+import {ResponseType, SortType} from "../shared/types"
 
 export const setPizzas = 'set pizzas in state'
 export const isLoading = 'is data loading?'
