@@ -1,11 +1,13 @@
 import axios from "axios"
 import {Dispatch} from 'redux'
-import {ResponseType, SortType} from "../shared/types"
+import {CartItemType, ResponseType, SortType} from "../shared/types"
 
 export const setPizzas = 'set pizzas in state'
 export const isLoading = 'is data loading?'
 export const setCategory = 'filter/category'
 export const setSort = 'filter/sort'
+export const addToCart = 'cart/addItem'
+export const removeFromCart = 'cart/removeItem'
 
 export const setPizzasInState = (payload: ResponseType[]): SetPizzasType => ({
     type: setPizzas,
@@ -36,6 +38,11 @@ export const setActiveSort = (payload: SortType): SetActiveSort => ({
     payload
 })
 
+export const addItemToCart = (payload: CartItemType): AddItemToCart => ({
+    type: addToCart,
+    payload
+})
+
 type SetPizzasType = {
     type: typeof setPizzas,
     payload: Array<ResponseType>
@@ -56,9 +63,15 @@ type SetActiveSort = {
     payload: SortType
 }
 
+type AddItemToCart = {
+    type: typeof addToCart,
+    payload: CartItemType
+}
+
 export type actionsType =
     SetPizzasType
     | ToggleIsLoadingType
     | SetActiveCategory
     | SetActiveSort
+    | AddItemToCart
 

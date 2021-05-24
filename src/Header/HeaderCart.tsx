@@ -1,15 +1,18 @@
 import {Link} from "react-router-dom"
 import CartSVG from "./CartSVG"
+import {useSelector} from "react-redux"
+import {appStateType} from "../redux"
 
 
 function HeaderCart() {
+    const {totalPrice, totalCount} = useSelector((state:appStateType ) => state.cart)
     return (
         <div className="header__cart">
             <Link to={"/cart"} className="button button--cart">
-                <span>{0} $</span>
+                <span>{totalPrice} $</span>
                 <div className="button__delimiter"></div>
                 <CartSVG/>
-                <span>{0}</span>
+                <span>{totalCount}</span>
             </Link>
         </div>
     )

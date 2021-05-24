@@ -17,4 +17,14 @@ export type ContentTypes = {
     [key: string]: string[]
 }
 
+export type CartItemType = {
+    id: number,
+    name: string,
+    price: number,
+    image: string,
+    size: string,
+    type: number
+}
+
 export type SortType = 'rating' | 'price' | 'name'
+

@@ -1,15 +1,17 @@
 import classnames from "classnames"
-import {useEffect, useState, Suspense} from "react"
-import {ContentTypes, ResponseType} from "../shared/types"
-import LoadingBlock from "./LoadingBlock"
+import {useEffect, useState} from "react"
+import {CartItemType, ContentTypes, ResponseType} from "../shared/types"
 
 
-type Props = { contentTypes: ContentTypes } & ResponseType
 
-function ContentItem({contentTypes, ...item}: Props) {
+type Props = { contentTypes: ContentTypes, handleAddToCart: (payload: CartItemType) => void }
+& ResponseType
+
+function ContentItem({contentTypes,handleAddToCart, ...item}: Props) {
     const [selectedSize, setSelectedSize] = useState<string>(() => item.sizes[0])
     const [selectedDough, setSelectedDough] = useState<number>(() => item.types[0])
     const [activePrice, setActivePrice] = useState<number>(0)
+
 
     const onPageLoad = () => {
         const initialSize = item.sizes.find(() => selectedSize === item.sizes[0])
@@ -26,6 +28,18 @@ function ContentItem({contentTypes, ...item}: Props) {
     }
     const getItemImage = (num: number): string => {
         return item.imageUrl[num]
+    }
+
+    const handleAddPizza = () => {
+        const obj: CartItemType = {
+            id: item.id,
+            name: item.name,
+            image: getItemImage(selectedDough),
+            price: getItemPrice(activePrice),
+            type: selectedDough,
+            size: selectedSize
+        }
+        handleAddToCart(obj)
     }
 
     useEffect(() => {
@@ -66,7 +80,7 @@ function ContentItem({contentTypes, ...item}: Props) {
                 </div>
                 <footer className={'item-bottom content-item__bottom'}>
                     <span className={'item-bottom__price'}>{getItemPrice(activePrice)} USD</span>
-                    <button className={'item-bottom__cart button button--cart'}>
+                    <button className={'item-bottom__cart button button--cart'} onClick={handleAddPizza}>
                         <span>Add to cart</span>
                     </button>
                 </footer>

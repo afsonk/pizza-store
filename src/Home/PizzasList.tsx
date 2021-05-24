@@ -1,8 +1,8 @@
 import {useEffect} from "react"
 import ContentItem from "./ContentItem"
-import {ContentTypes} from "../shared/types"
+import {CartItemType, ContentTypes} from "../shared/types"
 import {useDispatch, useSelector} from "react-redux"
-import {fetchPizzas, toggleIsLoading} from "../redux/actionCreators"
+import {addItemToCart, fetchPizzas, } from "../redux/actionCreators"
 import {appStateType} from "../redux"
 import LoadingBlock from "./LoadingBlock"
 
@@ -21,6 +21,10 @@ function PizzasList() {
         sizes: ['small', 'medium', 'large'],
         doughTypes: ['traditional', 'slim']
     }
+    const handleAddToCart = (payload: CartItemType) => {
+        console.log(payload)
+        dispatch(addItemToCart(payload))
+    }
 
     return (
         <div className={'content__list'}>
@@ -31,7 +35,7 @@ function PizzasList() {
                     })
                     : pizzas!.map(item => {
                         return <ContentItem key={item.id} contentTypes={contentTypes}
-                                            {...item}
+                                            {...item} handleAddToCart={handleAddToCart}
                         />
                     })
             }
