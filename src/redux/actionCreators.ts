@@ -8,6 +8,7 @@ export const setCategory = 'filter/category'
 export const setSort = 'filter/sort'
 export const addToCart = 'cart/addItem'
 export const removeFromCart = 'cart/removeItem'
+export const plusItemCart = 'cart/plusItem'
 
 export const setPizzasInState = (payload: ResponseType[]): SetPizzasType => ({
     type: setPizzas,
@@ -28,7 +29,7 @@ export const fetchPizzas = (activeCategory: null | number, sortBy: SortType, ord
         })
 }
 
-export const setActiveCategory = (payload: null | number):SetActiveCategory => ({
+export const setActiveCategory = (payload: null | number): SetActiveCategory => ({
     type: setCategory,
     payload
 })
@@ -40,6 +41,16 @@ export const setActiveSort = (payload: SortType): SetActiveSort => ({
 
 export const addItemToCart = (payload: CartItemType): AddItemToCart => ({
     type: addToCart,
+    payload
+})
+
+export const plusItemInCart = (payload: string): PlusItemInCart => ({
+    type: plusItemCart,
+    payload
+})
+
+export const removeItemFromCart = (payload: string): RemoveItemFromCart => ({
+    type: removeFromCart,
     payload
 })
 
@@ -68,10 +79,22 @@ type AddItemToCart = {
     payload: CartItemType
 }
 
+type PlusItemInCart = {
+    type: typeof plusItemCart,
+    payload: string
+}
+
+type RemoveItemFromCart = {
+    type: typeof removeFromCart,
+    payload: string
+}
+
 export type actionsType =
     SetPizzasType
     | ToggleIsLoadingType
     | SetActiveCategory
     | SetActiveSort
     | AddItemToCart
+    | PlusItemInCart
+    | RemoveItemFromCart
 

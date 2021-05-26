@@ -2,7 +2,7 @@ import {useEffect} from "react"
 import ContentItem from "./ContentItem"
 import {CartItemType, ContentTypes} from "../shared/types"
 import {useDispatch, useSelector} from "react-redux"
-import {addItemToCart, fetchPizzas, } from "../redux/actionCreators"
+import {addItemToCart, fetchPizzas,} from "../redux/actionCreators"
 import {appStateType} from "../redux"
 import LoadingBlock from "./LoadingBlock"
 
@@ -27,8 +27,9 @@ function PizzasList() {
 
     return (
         <div className={'content__list'}>
+
             {
-                isLoading
+                isLoading 
                     ? Array(12).fill(0).map((_, index) => {
                         return <LoadingBlock key={index}/>
                     })
