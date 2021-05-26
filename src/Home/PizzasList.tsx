@@ -22,7 +22,6 @@ function PizzasList() {
         doughTypes: ['traditional', 'slim']
     }
     const handleAddToCart = (payload: CartItemType) => {
-        console.log(payload)
         dispatch(addItemToCart(payload))
     }
 

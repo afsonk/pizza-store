@@ -4,7 +4,10 @@ import {actionsType, addToCart} from "./actionCreators"
 
 type State = {
     items: {
-        [id: number]: CartItemType[]
+        [id: string]: {
+            pizzas: CartItemType[],
+            totalPrice: any
+        }
     },
     totalCount: any,
     totalPrice: any
@@ -20,17 +23,36 @@ function getTotalSum(arr: CartItemType[]) {
     return arr.reduce((acc, next: CartItemType) => acc + next.price, 0)
 }
 
+function getUniqueID(action: CartItemType): string {
+    return `${action.id}-${action.size}-${action.type}`
+}
+
+function makeArray(arr: any) {
+    const preArr = []
+    for (let item in arr){
+        preArr.push(arr[item].pizzas)
+    }
+    return [].concat(...Object.values(preArr))
+}
+
 const cartReducer = (state = initialState, action: actionsType): State => {
     switch (action.type) {
         case addToCart:
-            const newItems = {
+            const ident: string = getUniqueID(action.payload)
+            const singleItems = state.items[ident]
+                ? [...state.items[ident].pizzas, action.payload]
+                : [action.payload]
+
+            const newItems: any = {
                 ...state.items,
-                [action.payload.id]: state.items[action.payload.id]
-                    ? [...state.items[action.payload.id], action.payload]
-                    : [action.payload]
+                [ident]: {
+                    ...state.items[ident],
+                    pizzas: singleItems,
+                    totalCount: getTotalSum(singleItems)
+                }
             }
-            // @ts-ignore
-            const arr: CartItemType[] = [].concat(...Object.values(newItems))
+
+            const arr: CartItemType[] = makeArray(newItems)
             const sum = getTotalSum(arr)
             return {
                 ...state,
@@ -38,10 +60,10 @@ const cartReducer = (state = initialState, action: actionsType): State => {
                 totalPrice: sum,
                 totalCount: arr.length
             }
-
         default:
             return state
     }
 }
 
 export default cartReducer
+
