@@ -65,9 +65,17 @@ const cartReducer = (state = initialState, action: actionsType): State => {
             }
         }
         case "cart/removeItem":{
+            const newItems = {
+                ...state.items,
+            }
+            const currentTotalPrice = newItems[action.payload].totalPrice
+            const currentTotalCount = newItems[action.payload].pizzas.length
+            delete newItems[action.payload]
             delete state.items[action.payload]
             return {
                 ...state,
+                totalPrice: state.totalPrice - currentTotalPrice,
+                totalCount: state.totalCount - currentTotalCount
             }
         }
         case "cart/plusItem": {
@@ -75,6 +83,26 @@ const cartReducer = (state = initialState, action: actionsType): State => {
                 ...state.items[action.payload].pizzas,
                 state.items[action.payload].pizzas[0],
             ]
+            const newItems: StateItems = {
+                ...state.items,
+                [action.payload]: {
+                    ...state.items[action.payload],
+                    pizzas: newObjItems,
+                    totalPrice: getTotalSum(newObjItems)
+                }
+            }
+            const arr: CartItemType[] = makeArray(newItems)
+            const sum: number = getTotalSum(arr)
+            return {
+                ...state,
+                items: newItems,
+                totalPrice: sum,
+                totalCount: arr.length
+            }
+        }
+        case "cart/minusItem": {
+            const oldItems = state.items[action.payload].pizzas
+            const newObjItems = oldItems.length > 1 ? oldItems.slice(1) : oldItems
             const newItems: StateItems = {
                 ...state.items,
                 [action.payload]: {

@@ -3,7 +3,7 @@ import Bucket from "./BucketSVG"
 import {CartItemType} from "../shared/types"
 import {useDispatch} from "react-redux"
 import {getUniqueID} from "../shared/getUniqueID"
-import {plusItemInCart, removeFromCart, removeItemFromCart} from "../redux/actionCreators"
+import {minusItemFromCart, plusItemInCart, removeItemFromCart} from "../redux/actionCreators"
 
 type Props = {
     totalPrice: number,
@@ -23,6 +23,10 @@ function CartItem({totalPrice, info, getDough, getSize, singleItemCount}: Props)
     const handleRemoveClick = () => {
         dispatch(removeItemFromCart(pizzaId))
     }
+    const handleMinusClick = () => {
+        dispatch(minusItemFromCart(pizzaId))
+    }
+
     return (
         <div className={'cart__item'}>
             <div className={'cart__item-top'}>
@@ -34,7 +38,7 @@ function CartItem({totalPrice, info, getDough, getSize, singleItemCount}: Props)
                     <h4 className={'cart__item-name'}>{info.name}</h4>
                     <p className={'cart__item-detail'}>{getSize(info.size)}, {getDough(info.type)}</p>
                 </div>
-                <DoubleButton singleItemCount={singleItemCount} handlePlusClick={handlePlusClick} />
+                <DoubleButton singleItemCount={singleItemCount} handlePlusClick={handlePlusClick} handleMinusClick={handleMinusClick} />
                 <div className={'cart__item-price'}>
                     <span>{totalPrice}$</span>
                 </div>

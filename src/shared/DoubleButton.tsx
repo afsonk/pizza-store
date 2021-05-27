@@ -1,13 +1,14 @@
 
 type Props = {
     singleItemCount: number,
-    handlePlusClick: () => void
+    handlePlusClick: () => void,
+    handleMinusClick: () => void
 }
 
-function DoubleButton({singleItemCount,handlePlusClick}:Props){
+function DoubleButton({singleItemCount,handlePlusClick, handleMinusClick}:Props){
     return(
         <div className={'double-button'}>
-            <button className={'remove-button'}>
+            <button className={'remove-button'} onClick={handleMinusClick}>
                 <svg width="10" height="10" className="icon">
                     <rect fill="#454B54" y="4" width="10" height="2" rx="1"></rect>
                 </svg>

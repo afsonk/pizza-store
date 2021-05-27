@@ -9,6 +9,7 @@ export const setSort = 'filter/sort'
 export const addToCart = 'cart/addItem'
 export const removeFromCart = 'cart/removeItem'
 export const plusItemCart = 'cart/plusItem'
+export const minusItemCart = 'cart/minusItem'
 
 export const setPizzasInState = (payload: ResponseType[]): SetPizzasType => ({
     type: setPizzas,
@@ -54,6 +55,11 @@ export const removeItemFromCart = (payload: string): RemoveItemFromCart => ({
     payload
 })
 
+export const minusItemFromCart = (payload: string): MinusItemFromCart => ({
+    type: minusItemCart,
+    payload
+})
+
 type SetPizzasType = {
     type: typeof setPizzas,
     payload: Array<ResponseType>
@@ -89,6 +95,11 @@ type RemoveItemFromCart = {
     payload: string
 }
 
+type MinusItemFromCart = {
+    type: typeof minusItemCart,
+    payload: string
+}
+
 export type actionsType =
     SetPizzasType
     | ToggleIsLoadingType
@@ -97,4 +108,5 @@ export type actionsType =
     | AddItemToCart
     | PlusItemInCart
     | RemoveItemFromCart
+    | MinusItemFromCart
 
