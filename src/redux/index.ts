@@ -1,8 +1,8 @@
 import {applyMiddleware,combineReducers,createStore, compose} from "redux"
 import thunk from 'redux-thunk'
-import pizzasReducer from "./pizzasReducer"
-import filterReducer from "./filterReducer"
-import cartReducer from "./cartReducer"
+import pizzasReducer from "./pizzas/pizzasReducer"
+import filterReducer from "./filter/filterReducer"
+import cartReducer from "./cart/cartReducer"
 
 
 const rootReducer = combineReducers({

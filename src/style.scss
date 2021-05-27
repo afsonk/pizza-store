@@ -424,6 +424,11 @@ body {
     height: 100%;
     padding: 0 8px;
     transition: .1s linear;
+
+    &.disabled{
+      pointer-events: none;
+      opacity: 0.4;
+    }
     svg{
       fill: #454B54;
     }

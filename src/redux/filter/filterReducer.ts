@@ -1,5 +1,5 @@
-import {actionsType} from "./actionCreators"
-import {SortType} from "../shared/types"
+import {actionsType} from "../actionCreators"
+import {SortType} from "../../shared/types"
 
 
 export type StateType = {

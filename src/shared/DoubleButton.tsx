@@ -1,3 +1,4 @@
+import classnames from "classnames"
 
 type Props = {
     singleItemCount: number,
@@ -8,7 +9,9 @@ type Props = {
 function DoubleButton({singleItemCount,handlePlusClick, handleMinusClick}:Props){
     return(
         <div className={'double-button'}>
-            <button className={'remove-button'} onClick={handleMinusClick}>
+            <button className={classnames('remove-button',{
+                'disabled': singleItemCount === 1
+            })} onClick={handleMinusClick}>
                 <svg width="10" height="10" className="icon">
                     <rect fill="#454B54" y="4" width="10" height="2" rx="1"></rect>
                 </svg>

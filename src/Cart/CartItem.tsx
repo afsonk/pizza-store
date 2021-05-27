@@ -3,7 +3,8 @@ import Bucket from "./BucketSVG"
 import {CartItemType} from "../shared/types"
 import {useDispatch} from "react-redux"
 import {getUniqueID} from "../shared/getUniqueID"
-import {minusItemFromCart, plusItemInCart, removeItemFromCart} from "../redux/actionCreators"
+import {minusItemFromCart, plusItemInCart, removeItemFromCart} from "../redux/cart/actions"
+
 
 type Props = {
     totalPrice: number,

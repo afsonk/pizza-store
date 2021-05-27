@@ -1,5 +1,5 @@
-import {actionsType} from "./actionCreators"
-import {ResponseType} from "../shared/types"
+import {actionsType} from "../actionCreators"
+import {ResponseType} from "../../shared/types"
 
 
 export type PizzasState = {
@@ -15,12 +15,12 @@ const initialState: PizzasState = {
 
 const pizzasReducer = (state:PizzasState = initialState, action: actionsType):PizzasState => {
         switch (action.type){
-            case "set pizzas in state":
+            case "pizzas/setPizzas":
                 return{
                     ...state,
                     pizzas: action.payload
                 }
-            case "is data loading?":
+            case "pizzas/isLoading":
                 return {
                     ...state,
                     isLoading: action.payload

@@ -1,6 +1,6 @@
-import { getUniqueID } from "../shared/getUniqueID"
-import {CartItemType} from "../shared/types"
-import {actionsType} from "./actionCreators"
+import { getUniqueID } from "../../shared/getUniqueID"
+import {CartItemType} from "../../shared/types"
+import {actionsType} from "../actionCreators"
 
 
 type StateItems = {

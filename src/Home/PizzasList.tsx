@@ -2,9 +2,10 @@ import {useEffect} from "react"
 import ContentItem from "./ContentItem"
 import {CartItemType, ContentTypes} from "../shared/types"
 import {useDispatch, useSelector} from "react-redux"
-import {addItemToCart, fetchPizzas,} from "../redux/actionCreators"
+import {fetchPizzas} from "../redux/pizzas/actions"
 import {appStateType} from "../redux"
 import LoadingBlock from "./LoadingBlock"
+import {addItemToCart} from "../redux/cart/actions"
 
 
 function PizzasList() {
