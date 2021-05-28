@@ -2,9 +2,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom"
 import {Provider} from "react-redux"
 import store from "./redux"
 import './style.scss'
-import Header from "./Header/Header"
-import Home from "./Home/Home"
-import Cart from "./Cart/Cart"
+import {Cart, Header, Home} from "./components"
 
 
 function App() {

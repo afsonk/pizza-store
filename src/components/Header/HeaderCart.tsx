@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom"
-import CartSVG from "./CartSVG"
+import CartSVG from "../../assets/svg/CartSVG"
 import {useSelector} from "react-redux"
-import {appStateType} from "../redux"
+import {appStateType} from "../../redux"
 
 
 function HeaderCart() {

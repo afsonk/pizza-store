@@ -1,10 +1,10 @@
 import classnames from "classnames"
 import {useEffect, useRef, useState} from "react"
-import SortArrow from "./SortArrow"
-import { actionsType} from "../redux/actionCreators"
-import {SortType} from "../shared/types"
+import SortArrowSVG from "../../assets/svg/SortArrowSVG"
+import { actionsType} from "../../redux/actionCreators"
+import {SortType} from "../../shared/types"
 import {Dispatch} from "redux"
-import {setActiveSort} from "../redux/filter/actions"
+import {setActiveSort} from "../../redux/filter/actions"
 
 
 type Props = {
@@ -41,7 +41,7 @@ function Sort({sort, activeSort, dispatch}: Props) {
 
     return (
         <div className={'sort'}>
-            <SortArrow isVisible={isVisible}/>
+            <SortArrowSVG isVisible={isVisible}/>
             <b>Sort by:</b>
             <span className={'sort__label'} onClick={handleSortLabelClick} ref={sortRef}>{activeSort}</span>
             <div className={classnames('sort__popup',{

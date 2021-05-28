@@ -1,9 +1,7 @@
-import DoubleButton from "../shared/DoubleButton"
-import Bucket from "./BucketSVG"
-import {CartItemType} from "../shared/types"
+import Bucket from "../../assets/svg/BucketSVG"
 import {useDispatch} from "react-redux"
-import {getUniqueID} from "../shared/getUniqueID"
-import {minusItemFromCart, plusItemInCart, removeItemFromCart} from "../redux/cart/actions"
+import {minusItemFromCart, plusItemInCart, removeItemFromCart} from "../../redux/cart/actions"
+import {DoubleButton, CartItemType, getUniqueID} from "../../shared"
 
 
 type Props = {
@@ -39,7 +37,9 @@ function CartItem({totalPrice, info, getDough, getSize, singleItemCount}: Props)
                     <h4 className={'cart__item-name'}>{info.name}</h4>
                     <p className={'cart__item-detail'}>{getSize(info.size)}, {getDough(info.type)}</p>
                 </div>
-                <DoubleButton singleItemCount={singleItemCount} handlePlusClick={handlePlusClick} handleMinusClick={handleMinusClick} />
+                <DoubleButton singleItemCount={singleItemCount}
+                              handlePlusClick={handlePlusClick}
+                              handleMinusClick={handleMinusClick} />
                 <div className={'cart__item-price'}>
                     <span>{totalPrice}$</span>
                 </div>

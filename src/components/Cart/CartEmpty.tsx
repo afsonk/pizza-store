@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
-import empty from '../assets/img/empty-cart.png'
-import Container from "../shared/Container"
-import ArrowRightSVG from "./ArrowRightSVG"
+import empty from '../../assets/img/empty-cart.png'
+import {Container} from "../../shared"
+import ArrowRightSVG from "../../assets/svg/ArrowRightSVG"
 
 
 

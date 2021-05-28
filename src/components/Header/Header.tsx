@@ -1,4 +1,4 @@
-import Container from "../shared/Container"
+import {Container} from "../../shared"
 import Logo from "./Logo"
 import HeaderCart from "./HeaderCart"
 

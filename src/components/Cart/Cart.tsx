@@ -1,9 +1,9 @@
-import Container from "../shared/Container"
+import {Container} from "../../shared"
 import CartItem from "./CartItem"
-import ArrowRightSVG from "./ArrowRightSVG"
+import ArrowRightSVG from "../../assets/svg/ArrowRightSVG"
 import {Link} from "react-router-dom"
 import {useSelector} from "react-redux"
-import {appStateType} from "../redux"
+import {appStateType} from "../../redux"
 
 
 function Cart() {
@@ -11,23 +11,25 @@ function Cart() {
     const finalItem = Object.keys(items)
 
     function getDough(dough: number): string {
-        if (dough === 0) {
-            return 'traditional dough'
-        } else {
-            return 'slim dough'
+        switch (dough) {
+            case 0:
+                return 'traditional dough'
+            default:
+                return 'slim dough'
         }
     }
 
     function getSize(size: string): string {
-        if (size === 'small') {
-            return 'Small size 26cm'
-        }
-        if (size === 'medium') {
-            return 'Medium size 30cm'
-        } else {
-            return 'Large size 40cm'
+        switch (size) {
+            case 'small':
+                return 'Small size 26cm'
+            case 'medium':
+                return 'Medium size 30cm'
+            default:
+                return 'Large size 40cm'
         }
     }
+
 
     return (
         <main className={'cart'}>
