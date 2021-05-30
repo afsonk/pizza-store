@@ -3,7 +3,7 @@ import {CartItemType} from "../../shared/types"
 import {actionsType} from "../actionCreators"
 
 
-type StateItems = {
+export type CartStateItems = {
     [id: string]: {
         pizzas: CartItemType[],
         totalPrice: any
@@ -11,7 +11,7 @@ type StateItems = {
 }
 
 type State = {
-    items: StateItems,
+    items: CartStateItems,
     totalCount: any,
     totalPrice: any
 }
@@ -45,7 +45,7 @@ const cartReducer = (state = initialState, action: actionsType): State => {
                 ? [...state.items[ident].pizzas, action.payload]
                 : [action.payload]
 
-            const newItems: StateItems = {
+            const newItems: CartStateItems = {
                 ...state.items,
                 [ident]: {
                     ...state.items[ident],
@@ -83,7 +83,7 @@ const cartReducer = (state = initialState, action: actionsType): State => {
                 ...state.items[action.payload].pizzas,
                 state.items[action.payload].pizzas[0],
             ]
-            const newItems: StateItems = {
+            const newItems: CartStateItems = {
                 ...state.items,
                 [action.payload]: {
                     ...state.items[action.payload],
@@ -103,7 +103,7 @@ const cartReducer = (state = initialState, action: actionsType): State => {
         case "cart/minusItem": {
             const oldItems = state.items[action.payload].pizzas
             const newObjItems = oldItems.length > 1 ? oldItems.slice(1) : oldItems
-            const newItems: StateItems = {
+            const newItems: CartStateItems = {
                 ...state.items,
                 [action.payload]: {
                     ...state.items[action.payload],

@@ -2,8 +2,8 @@ import {Link} from "react-router-dom"
 import {CartSVG} from "../../assets/svg"
 import {useSelector} from "react-redux"
 import {appStateType} from "../../redux"
-import EmptyCartPopup from "./EmptyCartPopup"
 import {useState} from "react"
+import CartPopup from "./CartPoup"
 
 
 function HeaderCart() {
@@ -23,7 +23,7 @@ function HeaderCart() {
                 <span>{totalCount}</span>
             </Link>
             {
-                isHovered && <EmptyCartPopup/>
+                isHovered && <CartPopup/>
             }
         </div>
     )

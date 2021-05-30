@@ -2,6 +2,7 @@ import {Bucket} from "../../assets/svg"
 import {useDispatch} from "react-redux"
 import {minusItemFromCart, plusItemInCart, removeItemFromCart} from "../../redux/cart/actions"
 import {DoubleButton, CartItemType, getUniqueID} from "../../shared"
+import classnames from "classnames"
 
 
 type Props = {
@@ -9,10 +10,11 @@ type Props = {
     info: CartItemType,
     getDough: (i: number) => string,
     getSize: (i: string) => string,
-    singleItemCount: number
+    singleItemCount: number,
+    isPopup?: boolean
 }
 
-function CartItem({totalPrice, info, getDough, getSize, singleItemCount}: Props) {
+function CartItem({totalPrice, info, getDough, getSize, singleItemCount, isPopup}: Props) {
     const dispatch = useDispatch()
     const pizzaId = getUniqueID(info)
 
@@ -28,24 +30,57 @@ function CartItem({totalPrice, info, getDough, getSize, singleItemCount}: Props)
 
     return (
         <div className={'cart__item'}>
-            <div className={'cart__item-top'}>
-                <img
-                    className={'cart__item-img'}
-                    src={info.image}
-                    alt="pizza"/>
-                <div className={'cart__item-info'}>
-                    <h4 className={'cart__item-name'}>{info.name}</h4>
-                    <p className={'cart__item-detail'}>{getSize(info.size)}, {getDough(info.type)}</p>
-                </div>
-                <DoubleButton singleItemCount={singleItemCount}
-                              handlePlusClick={handlePlusClick}
-                              handleMinusClick={handleMinusClick} />
-                <div className={'cart__item-price'}>
-                    <span>{totalPrice}$</span>
-                </div>
-                <button className={'cart__item-remove'} onClick={handleRemoveClick}>
-                    <Bucket/>
-                </button>
+            <div className={classnames('cart__item-inner', {
+                'popup': isPopup
+            })}>
+                {
+                    isPopup
+                        ? <>
+                            <img
+                                className={'cart__item-img'}
+                                src={info.image}
+                                alt="pizza"/>
+                                <div className={'cart__detailed'}>
+                                    <div className={'cart__item-top'}>
+                                        <h4 className={'cart__item-name'}>{info.name}</h4>
+                                        <button className={'cart__item-remove'} onClick={handleRemoveClick}>
+                                            <Bucket/>
+                                        </button>
+                                    </div>
+                                    <div className={'cart__item-text'}>
+                                        <p className={'cart__item-detail'}>{getSize(info.size)}, {getDough(info.type)}</p>
+                                    </div>
+                                    <div className={'cart__item-bottom'}>
+                                        <DoubleButton singleItemCount={singleItemCount}
+                                                      handlePlusClick={handlePlusClick}
+                                                      handleMinusClick={handleMinusClick}/>
+                                        <div className={'cart__item-price'}>
+                                            <span>{totalPrice}$</span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </>
+                        : <>
+                            <img
+                                className={'cart__item-img'}
+                                src={info.image}
+                                alt="pizza"/>
+                            <div className={'cart__item-info'}>
+                                <h4 className={'cart__item-name'}>{info.name}</h4>
+                                <p className={'cart__item-detail'}>{getSize(info.size)}, {getDough(info.type)}</p>
+                            </div>
+                            <DoubleButton singleItemCount={singleItemCount}
+                                          handlePlusClick={handlePlusClick}
+                                          handleMinusClick={handleMinusClick}/>
+                            <div className={'cart__item-price'}>
+                                <span>{totalPrice}$</span>
+                            </div>
+                            <button className={'cart__item-remove'} onClick={handleRemoveClick}>
+                                <Bucket/>
+                            </button>
+                        </>
+                }
+
             </div>
         </div>
     )
