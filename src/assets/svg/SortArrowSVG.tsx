@@ -1,7 +1,7 @@
 import classnames from "classnames"
 
 
-function SortArrowSVG({isVisible}: {isVisible: boolean}){
+export function SortArrowSVG({isVisible}: {isVisible: boolean}){
     return(
         <svg className={classnames('sort__arrow',{
             'active': isVisible
@@ -11,4 +11,3 @@ function SortArrowSVG({isVisible}: {isVisible: boolean}){
     )
 }
 
-export default SortArrowSVG

@@ -3,6 +3,7 @@ import {Provider} from "react-redux"
 import store from "./redux"
 import './style.scss'
 import {Cart, Header, Home} from "./components"
+import CartEmpty from "./components/Cart/CartEmpty"
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
                 <Header/>
                 <Route exact path={'/'} component={Home}/>
                 <Route exact path={'/cart'} component={Cart}/>
+                <Route exact path={'/cartEmpty'} component={CartEmpty}/>
             </Provider>
         </Router>
     )

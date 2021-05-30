@@ -1,0 +1,5 @@
+export {SortArrowSVG} from './SortArrowSVG'
+export {DogWithPizzaSVG} from './DogWithPizzaSVG'
+export {CartSVG} from './CartSVG'
+export {Bucket} from './BucketSVG'
+export {Arrow} from './ArrowRightSVG'

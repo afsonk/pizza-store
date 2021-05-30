@@ -1,6 +1,28 @@
-.header {
+
+.header__cart{
   display: flex;
-  justify-content: space-between;
-  padding: 1.5rem 0;
+  align-items: center;
+  position: relative;
+  height: 65px;
 }
 
+.cart__popup{
+  position: absolute;
+  right: 0;
+  top: 60px;
+  z-index: 5;
+  padding: 40px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: RGB(6 5 50 / 15%) 0px 4px 22px -6px;;
+  background-color: #fff;
+  text-align: center;
+  h2{
+    margin-top: 10px;
+    line-height: 26px;
+  }
+  p{
+    margin-top: 10px;
+    font-size: 16px;
+  }
+}

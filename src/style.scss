@@ -223,7 +223,7 @@ body {
   right: 0;
   bottom: -150px;
   background-color: #fff;
-  box-shadow: 0px 5px 15px RGB(0 0 0 / 9%);
+  box-shadow: $shadow;
   border-radius: 10px;
 
   &.active {
@@ -362,7 +362,6 @@ body {
   font-weight: 500;
   &.empty{
     font-size: 3rem;
-    margin: 5px;
   }
 }
 

@@ -31,7 +31,7 @@ function PizzasList() {
 
             {
                 isLoading 
-                    ? Array(12).fill(0).map((_, index) => {
+                    ? Array(4).fill(0).map((_, index) => {
                         return <LoadingBlock key={index}/>
                     })
                     : pizzas!.map(item => {

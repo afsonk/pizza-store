@@ -1,6 +1,6 @@
 
 
-function CartSVG() {
+export function CartSVG() {
     return (
         <svg
             width="18"
@@ -34,4 +34,4 @@ function CartSVG() {
     )
 }
 
-export default CartSVG
+

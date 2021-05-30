@@ -1,4 +1,4 @@
-import Bucket from "../../assets/svg/BucketSVG"
+import {Bucket} from "../../assets/svg"
 import {useDispatch} from "react-redux"
 import {minusItemFromCart, plusItemInCart, removeItemFromCart} from "../../redux/cart/actions"
 import {DoubleButton, CartItemType, getUniqueID} from "../../shared"

@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import empty from '../../assets/img/empty-cart.png'
 import {Container} from "../../shared"
-import ArrowRightSVG from "../../assets/svg/ArrowRightSVG"
+import {Arrow} from "../../assets/svg"
 
 
 
@@ -18,7 +18,7 @@ function CartEmpty() {
                     </div>
                     <div className={'cart__content-bottom'}>
                         <Link to={'/'} className={'button button--empty'}>
-                            <ArrowRightSVG/>
+                            <Arrow/>
                             <span>Go Back</span>
                         </Link>
                     </div>

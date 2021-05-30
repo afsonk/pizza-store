@@ -1,4 +1,5 @@
 import {Container} from "../../shared"
+import './style.scss'
 import Logo from "./Logo"
 import HeaderCart from "./HeaderCart"
 

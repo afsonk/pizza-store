@@ -1,6 +1,6 @@
 import classnames from "classnames"
 import {useEffect, useRef, useState} from "react"
-import SortArrowSVG from "../../assets/svg/SortArrowSVG"
+import {SortArrowSVG} from "../../assets/svg"
 import { actionsType} from "../../redux/actionCreators"
 import {SortType} from "../../shared/types"
 import {Dispatch} from "redux"
