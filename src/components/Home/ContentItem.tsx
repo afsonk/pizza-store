@@ -3,10 +3,13 @@ import {useEffect, useState} from "react"
 import {CartItemType, ContentTypes, ResponseType} from "../../shared"
 
 
-type Props = { contentTypes: ContentTypes, handleAddToCart: (payload: CartItemType) => void }
-    & ResponseType
+type Props = {
+        contentTypes: ContentTypes,
+        handleAddToCart: (payload: CartItemType) => void,
+        setImageLoad: (b: boolean) => void
+    } & ResponseType
 
-function ContentItem({contentTypes, handleAddToCart, ...item}: Props) {
+function ContentItem({contentTypes, handleAddToCart,setImageLoad, ...item}: Props) {
     const [selectedSize, setSelectedSize] = useState<string>(() => item.sizes[0])
     const [selectedDough, setSelectedDough] = useState<number>(() => item.types[0])
     const [activePrice, setActivePrice] = useState<number>(0)
@@ -50,7 +53,9 @@ function ContentItem({contentTypes, handleAddToCart, ...item}: Props) {
             <img className={'content__item-image'}
                  src={getItemImage(selectedDough)}
                  alt="pizza"
-                 loading="lazy"/>
+                 loading="lazy"
+                 onLoad={() => setImageLoad(true)}
+            />
             <h2 className={'content__item-title'}>{item.name}</h2>
             <div className={'content-types'}>
                 <ul className={'content-types-list content-types__sizes'}>

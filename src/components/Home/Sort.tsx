@@ -50,7 +50,7 @@ function Sort({sort, activeSort, dispatch}: Props) {
                 <ul>
                     {
                         sort.map(item => {
-                            return <li className={classnames({
+                            return <li key={item} className={classnames({
                                 'active': item === activeSort
                             })}
                             onClick={() => handleSortClick(item)}>{item}</li>

@@ -33,8 +33,12 @@
   max-height: 340px;
   width: 352px;
   overflow: auto;
+  transition: .1s linear;
   .cart__item:first-child{
     border-top: none;
+  }
+  .cart__item{
+    margin: 0 10px;
   }
 }
 
@@ -65,6 +69,7 @@
   align-items: center;
   font-size: 19px;
   font-weight: 500;
+  margin: 0 10px;
   span{
     color: #ff6900;
   }

@@ -20,8 +20,8 @@ function CartPopup() {
                     ? <>
                         <div className={'cart__popup-list'}>
                             {
-                                finalItem.map(item => {
-                                    return <CartItem key={items[item].pizzas[0].id}
+                                finalItem.map((item, i, arr) => {
+                                    return <CartItem key={arr[i]}
                                                      totalPrice={items[item].totalPrice}
                                                      info={items[item].pizzas[0]}
                                                      singleItemCount={items[item].pizzas.length}
