@@ -1,18 +1,19 @@
 import classnames from "classnames"
 import {useEffect, useState} from "react"
 import {CartItemType, ContentTypes, ResponseType} from "../../shared"
+import LoadingBlock from "./LoadingBlock"
 
 
 type Props = {
-        contentTypes: ContentTypes,
-        handleAddToCart: (payload: CartItemType) => void,
-        setImageLoad: (b: boolean) => void
-    } & ResponseType
+    contentTypes: ContentTypes,
+    handleAddToCart: (payload: CartItemType) => void,
+} & ResponseType
 
-function ContentItem({contentTypes, handleAddToCart,setImageLoad, ...item}: Props) {
+function ContentItem({contentTypes, handleAddToCart, ...item}: Props) {
     const [selectedSize, setSelectedSize] = useState<string>(() => item.sizes[0])
     const [selectedDough, setSelectedDough] = useState<number>(() => item.types[0])
     const [activePrice, setActivePrice] = useState<number>(0)
+    const [imageLoading, setImageLoading] = useState(true)
 
 
     const onPageLoad = () => {
@@ -25,12 +26,8 @@ function ContentItem({contentTypes, handleAddToCart,setImageLoad, ...item}: Prop
         setActivePrice(index)
     }
 
-    const getItemPrice = (activePrice: number): number => {
-        return item.price[activePrice]
-    }
-    const getItemImage = (num: number): string => {
-        return item.imageUrl[num]
-    }
+    const getItemPrice = (activePrice: number): number => item.price[activePrice]
+    const getItemImage = (num: number): string => item.imageUrl[num]
 
     const handleAddPizza = () => {
         const obj: CartItemType = {
@@ -43,6 +40,7 @@ function ContentItem({contentTypes, handleAddToCart,setImageLoad, ...item}: Prop
         }
         handleAddToCart(obj)
     }
+    const handleImageLoad = () => setImageLoading(false)
 
     useEffect(() => {
         onPageLoad()
@@ -50,11 +48,12 @@ function ContentItem({contentTypes, handleAddToCart,setImageLoad, ...item}: Prop
 
     return (
         <div className={'content__item'}>
+            {imageLoading && <LoadingBlock image/>}
             <img className={'content__item-image'}
                  src={getItemImage(selectedDough)}
                  alt="pizza"
-                 loading="lazy"
-                 onLoad={() => setImageLoad(true)}
+                 style={{display: imageLoading ? 'none' : 'block'}}
+                 onLoad={handleImageLoad}
             />
             <h2 className={'content__item-title'}>{item.name}</h2>
             <div className={'content-types'}>

@@ -9,7 +9,6 @@ import {addItemToCart} from "../../redux/cart/actions"
 
 
 function PizzasList() {
-    const [imageLoad, setImageLoad] = useState(false)
     const {pizzas, isLoading} = useSelector((state: appStateType) => state.pizzaItems)
     const {sortBy, activeCategory} = useSelector((state: appStateType) => state.filterCat)
 
@@ -17,7 +16,6 @@ function PizzasList() {
 
     useEffect(() => {
         dispatch(fetchPizzas(activeCategory, sortBy.name, sortBy.order))
-        setImageLoad(false)
     }, [activeCategory, sortBy])
 
     const contentTypes: ContentTypes = {
@@ -32,14 +30,13 @@ function PizzasList() {
         <div className={'content__list'}>
 
             {
-                isLoading && !imageLoad
+                isLoading
                     ? Array(4).fill(0).map((_, index) => {
                         return <LoadingBlock key={index}/>
                     })
                     : pizzas!.map(item => {
                         return <ContentItem key={item.id} contentTypes={contentTypes}
                                             {...item} handleAddToCart={handleAddToCart}
-                                            setImageLoad={setImageLoad}
                         />
                     })
             }
