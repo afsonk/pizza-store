@@ -7,6 +7,7 @@ import ContentTitle from "./ContentTitle"
 import PizzasList from "./PizzasList"
 import {SortType} from "../../shared/types"
 import {setActiveCategory} from "../../redux/filter/actions"
+import './style.scss'
 
 function Home() {
     const categories: Array<string> = ['Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed']

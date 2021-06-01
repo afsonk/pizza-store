@@ -4,6 +4,7 @@ import {Redirect, useHistory} from "react-router-dom"
 import {useSelector} from "react-redux"
 import {appStateType} from "../../redux"
 import {Arrow} from "../../assets/svg"
+import './style.scss'
 
 
 

@@ -1,3 +1,24 @@
+@import "src/shared/style";
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  grid-column-gap: 5px;
+  text-decoration: none;
+}
+
+.logo__image {
+  width: 100%;
+  max-width: 65px;
+  height: 65px;
+  display: block;
+}
 
 .header__cart{
   display: flex;
@@ -72,6 +93,25 @@
   margin: 0 10px;
   span{
     color: #ff6900;
+  }
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 26px;
+    color: $black;
+    font-weight: 800;
+    margin: 3px 0;
+  }
+
+  p {
+    color: $grey;
   }
 }
 
