@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
 import ContentItem from "./ContentItem"
 import {CartItemType, ContentTypes} from "../../shared"
 import {useDispatch, useSelector} from "react-redux"

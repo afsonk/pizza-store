@@ -120,6 +120,13 @@ const cartReducer = (state = initialState, action: actionsType): State => {
                 totalCount: arr.length
             }
         }
+        case "cart/clear":
+            return {
+                ...state,
+                items: {},
+                totalPrice: 0,
+                totalCount: 0
+            }
         default:
             return state
     }

@@ -5,7 +5,7 @@ import CheckoutLine from './CheckoutLine'
 import {useDispatch, useSelector} from "react-redux"
 import {appStateType} from "../../redux"
 import {CheckoutStateType} from "../../redux/checkout/checkoutReducer"
-import {setCardDetails} from "../../redux/checkout/actions"
+import {makePayment, setCardDetails} from "../../redux/checkout/actions"
 import {Container} from "../../shared"
 import {Arrow} from "../../assets/svg"
 import {Link, useHistory} from "react-router-dom"
@@ -21,6 +21,14 @@ function Checkout() {
     const handleChange = (name: string) => (e: any) => {
         const {target: {value}} = e
         dispatch(setCardDetails({name, value}))
+    }
+
+    const handlePayClick = () => {
+        dispatch(makePayment(totalPrice, history))
+    }
+
+    if(!totalPrice){
+        history.push('/')
     }
 
     return (
@@ -49,11 +57,10 @@ function Checkout() {
                                 <span>Go Back</span>
                             </a>
                             <Link to={'/checkout'}>
-                                <button className={'button pay-btn'} type={"submit"}><span>Pay</span></button>
+                                <button className={'button pay-btn'} type={"submit"} onClick={handlePayClick}><span>Pay</span></button>
                             </Link>
                         </div>
                     </div>
-
                 </form>
             </Container>
         </div>

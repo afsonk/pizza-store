@@ -4,6 +4,7 @@ export const addToCart = 'cart/addItem'
 export const removeFromCart = 'cart/removeItem'
 export const plusItemCart = 'cart/plusItem'
 export const minusItemCart = 'cart/minusItem'
+export const clearCart = 'cart/clear'
 
 
 export type AddItemToCart = {
@@ -24,4 +25,8 @@ export type RemoveItemFromCart = {
 export type MinusItemFromCart = {
     type: typeof minusItemCart,
     payload: string
+}
+
+export type ClearCart = {
+    type: typeof clearCart
 }

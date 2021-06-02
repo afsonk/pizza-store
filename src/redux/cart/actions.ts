@@ -1,7 +1,10 @@
 import {CartItemType} from "../../shared/types"
 import {
     AddItemToCart,
-    addToCart, minusItemCart,
+    addToCart,
+    clearCart,
+    ClearCart,
+    minusItemCart,
     MinusItemFromCart,
     plusItemCart,
     PlusItemInCart,
@@ -28,3 +31,5 @@ export const minusItemFromCart = (payload: string): MinusItemFromCart => ({
     type: minusItemCart,
     payload
 })
+
+export const clearCartAction = (): ClearCart => ({ type: clearCart })
