@@ -4,7 +4,7 @@ import store from "./redux"
 import './style.scss'
 import {Cart, Header, Home} from "./components"
 import CartEmpty from "./components/Cart/CartEmpty"
-
+import Checkout from "./components/Checkout/Checkout"
 
 function App() {
     return (
@@ -14,6 +14,7 @@ function App() {
                 <Route exact path={'/'} component={Home}/>
                 <Route exact path={'/cart'} component={Cart}/>
                 <Route exact path={'/cartEmpty'} component={CartEmpty}/>
+                <Route exact path={'/checkout'} component={Checkout}/>
             </Provider>
         </Router>
     )

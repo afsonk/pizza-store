@@ -3,12 +3,14 @@ import thunk from 'redux-thunk'
 import pizzasReducer from "./pizzas/pizzasReducer"
 import filterReducer from "./filter/filterReducer"
 import cartReducer from "./cart/cartReducer"
+import checkoutReducer from "./checkout/checkoutReducer"
 
 
 const rootReducer = combineReducers({
     pizzaItems: pizzasReducer,
     filterCat: filterReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    checkout: checkoutReducer
 })
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

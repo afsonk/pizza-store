@@ -1,6 +1,7 @@
 import {SetPizzasType, ToggleIsLoadingType} from "./pizzas/types"
 import {SetActiveCategory, SetActiveSort} from "./filter/types"
 import {AddItemToCart, MinusItemFromCart, PlusItemInCart, RemoveItemFromCart} from "./cart/types"
+import {SetCardDetails} from "./checkout/types"
 
 export type actionsType =
     SetPizzasType
@@ -11,4 +12,6 @@ export type actionsType =
     | PlusItemInCart
     | RemoveItemFromCart
     | MinusItemFromCart
+    | SetCardDetails
+
 

@@ -1,11 +1,10 @@
 import {Container} from "../../shared"
 import CartList from "./CartList"
-import {Redirect, useHistory} from "react-router-dom"
+import {Redirect, useHistory, Link} from "react-router-dom"
 import {useSelector} from "react-redux"
 import {appStateType} from "../../redux"
 import {Arrow} from "../../assets/svg"
 import './style.scss'
-
 
 
 function Cart() {
@@ -33,11 +32,12 @@ function Cart() {
                                 <Arrow/>
                                 <span>Go Back</span>
                             </a>
-                            <button className={'button pay-btn'}><span>Pay Now</span></button>
+                            <Link to={'/checkout'}><button className={'button pay-btn'}><span>Checkout</span></button></Link>
                         </div>
                     </div>
                 </div>
             </Container>
+
         </main>
     )
 }
