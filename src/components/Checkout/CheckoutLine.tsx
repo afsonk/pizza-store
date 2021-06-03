@@ -1,27 +1,23 @@
+import {Field} from "formik"
+
 type Props = {
-    value: string,
+    name: string,
     label: string,
-    handleChange: (name: string) => (e: any) => void,
-    text: string,
-    length?: number
+    handleFocus: (el: string) => void
 }
 
-function CheckoutLine({value, label, handleChange, text, length}: Props) {
+function CustomInput ({name, label, handleFocus}: Props)  {
     return (
-        <div className={'checkout__line'}>
-            <label className={'form__label'} htmlFor={text}>{label}</label>
-            <input type={text === 'number' ? 'text' : text === 'date' ? 'date' : 'text'}
-                   className={'input'}
-                   value={value}
-                   name={text}
-                   id={text}
-                   maxLength={length ? length : undefined}
-                   onChange={handleChange(text === 'date' ? 'expiry' : text)}
-                   required
-            />
-
-        </div>
+        <Field name={name}>
+            {({ field, meta }: any) => (
+                <div className={'checkout__line'}>
+                    <label className={'form__label'} htmlFor={name}>{label}</label>
+                    <input className={'input'} type="text" {...field} placeholder="First Name" onFocus={() => handleFocus(name)}/>
+                    {meta.touched &&
+                    meta.error && <div className="error">{meta.error}</div>}
+                </div>
+            )}
+        </Field>
     )
 }
-
-export default CheckoutLine
+export default CustomInput

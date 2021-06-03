@@ -8,7 +8,7 @@ export type CheckoutStateType = {
     expiry: string
 }
 
-const initialState:CheckoutStateType = {
+const initialState: CheckoutStateType = {
     cvc: '',
     name: '',
     number: '',
@@ -16,11 +16,11 @@ const initialState:CheckoutStateType = {
 }
 
 const checkoutReducer = (state = initialState, action: actionsType): CheckoutStateType => {
-    switch (action.type){
+    switch (action.type) {
         case setCard:
             return {
                 ...state,
-                [action.payload.name]: action.payload.value
+                ...action.payload
             }
         default:
             return state

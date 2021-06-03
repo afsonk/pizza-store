@@ -1,67 +1,87 @@
 import Cards from 'react-credit-cards'
-import 'react-credit-cards/lib/styles.scss'
-import './style.scss'
-import CheckoutLine from './CheckoutLine'
 import {useDispatch, useSelector} from "react-redux"
 import {appStateType} from "../../redux"
-import {CheckoutStateType} from "../../redux/checkout/checkoutReducer"
-import {makePayment, setCardDetails} from "../../redux/checkout/actions"
-import {Container} from "../../shared"
-import {Arrow} from "../../assets/svg"
 import {Link, useHistory} from "react-router-dom"
+import {useState} from "react"
+import 'react-credit-cards/lib/styles.scss'
+import './style.scss'
+import {makePayment} from "../../redux/checkout/actions"
+import {Container, validationSchema} from "../../shared"
+import {Arrow} from "../../assets/svg"
+import {Form, Formik, FormikProps} from "formik"
+import CheckoutLine from "./CheckoutLine"
 
+export type initialFormState = {
+    number: string,
+    expiry: string,
+    cvc: string,
+    name: string
+}
 
 function Checkout() {
-    const {cvc, expiry, name, number} = useSelector((state: appStateType): CheckoutStateType => state.checkout)
+    const initialValues: initialFormState = {
+        number: '',
+        expiry: '',
+        cvc: '',
+        name: ''
+    }
+    const fieldsArray = [
+        {name: 'number', label: 'Card Number'},
+        {name: 'name', label: 'Cardholder Name'},
+        {name: 'cvc', label: 'CVC'},
+        {name: 'expiry', label: 'Expiry'}
+    ]
+
+    const [focus, setFocus] = useState<string>('number')
+
     const {totalPrice} = useSelector((state: appStateType) => state.cart)
 
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const handleChange = (name: string) => (e: any) => {
-        const {target: {value}} = e
-        dispatch(setCardDetails({name, value}))
-    }
-
-    const handlePayClick = () => {
+    const handlePayClick = (values: initialFormState) => {
+        console.log(values)
         dispatch(makePayment(totalPrice, history))
     }
-
-    if(!totalPrice){
-        history.push('/')
+    const handleFocus = (el: string) => {
+        setFocus(el)
     }
 
     return (
         <div className={'checkout'}>
             <Container>
-                <Cards
-                    cvc={cvc}
-                    expiry={expiry}
-                    name={name}
-                    number={number}
-                    focused={'number'}
-                    callback={(...args) => console.log(args)}
-                />
-                <form className={'checkout__form'}>
-                    <div className={'checkout__top'}>
-                        <CheckoutLine value={number} handleChange={handleChange} label={"Card Number"} text={"number"} length={16}/>
-                        <CheckoutLine value={name} handleChange={handleChange} label={"Card Holder"} text={"name"}/>
-                        <CheckoutLine value={cvc} handleChange={handleChange} label={"CVC"} text={"cvc"} length={3}/>
-                        <CheckoutLine value={expiry} handleChange={handleChange} label={"Expiry date"} text={"date"}/>
-                    </div>
-                    <div className={'cart__bottom'}>
-                        <p className={'cart__bottom-text'}>Total Price: <span>{totalPrice}$</span></p>
-                        <div className={'cart__bottom-actions'}>
-                            <a className={'button button--empty'} onClick={() => history.goBack()}>
-                                <Arrow/>
-                                <span>Go Back</span>
-                            </a>
-                            <Link to={'/checkout'}>
-                                <button className={'button pay-btn'} type={"submit"} onClick={handlePayClick}><span>Pay</span></button>
-                            </Link>
-                        </div>
-                    </div>
-                </form>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={values => console.log(values)}
+                >
+                    {(props: FormikProps<initialFormState>) => (
+                        <Form>
+                            <Cards
+                                {...props.values}
+                                // @ts-ignore
+                                focused={focus}
+                            />
+                            {
+                                fieldsArray.map(el => <CheckoutLine name={el.name} label={el.label} handleFocus={handleFocus}/>)
+                            }
+                            <div className={'cart__bottom'}>
+                                <p className={'cart__bottom-text'}>Total Price: <span>{totalPrice}$</span></p>
+                                <div className={'cart__bottom-actions'}>
+                                    <a className={'button button--empty'} onClick={() => history.goBack()}>
+                                        <Arrow/>
+                                        <span>Go Back</span>
+                                    </a>
+                                    <Link to={'/checkout'}>
+                                        <button className={'button pay-btn'} type={"submit"}>
+                                            <span>Pay</span>
+                                        </button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
             </Container>
         </div>
     )
