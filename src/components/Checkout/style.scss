@@ -24,8 +24,6 @@
 
 .input {
   font-size: 16px;
-  // Capitalized to prevent Sass
-  // thinking it's the Sass max()
   font-size: Max(16px, 1em);
   font-family: inherit;
   padding: 0.25em 0.5em;
@@ -56,19 +54,6 @@
   height: 2.25rem;
 }
 
-.input[readonly] {
-  border-style: dotted;
-  cursor: not-allowed;
-  color: #777;
-}
-
-.input[disabled] {
-  --input-border: #ccc;
-
-  background-color: #eee;
-  cursor: not-allowed;
-}
-
 label {
   font-size: 1.125rem;
   font-weight: 500;
@@ -79,10 +64,12 @@ label {
   margin-top: 2rem;
 }
 
-input {
-  font-family: monospace;
+.checkout__line-error{
+  color: #e96060;
 }
-label {
-  display: block;
+.result__text{
+  font-size: 18px;
+  font-size: 500;
+  margin-bottom: 20px;
 }
 

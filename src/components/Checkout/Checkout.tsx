@@ -1,7 +1,7 @@
 import Cards from 'react-credit-cards'
 import {useDispatch, useSelector} from "react-redux"
 import {appStateType} from "../../redux"
-import {useHistory} from "react-router-dom"
+import {Redirect, useHistory} from "react-router-dom"
 import {useState} from "react"
 import 'react-credit-cards/lib/styles.scss'
 import './style.scss'
@@ -18,7 +18,15 @@ export type initialFormState = {
     name: string
 }
 
-function Checkout() {
+export type Props = {
+    location: {
+        state: {
+            totalPrice?: number
+        }
+    }
+}
+
+function Checkout({location: {state}}: Props) {
     const initialValues: initialFormState = {
         number: '',
         expiry: '',
@@ -26,24 +34,25 @@ function Checkout() {
         name: ''
     }
     const fieldsArray = [
-        {name: 'number', label: 'Card Number'},
-        {name: 'name', label: 'Cardholder Name'},
-        {name: 'cvc', label: 'CVC'},
-        {name: 'expiry', label: 'Expiry'}
+        {name: 'number', label: 'Card Number', place: "4242 4242 4242 4242"},
+        {name: 'name', label: 'Cardholder Name', place: "John Smith"},
+        {name: 'cvc', label: 'CVC', place: "123"},
+        {name: 'expiry', label: 'Expiry', place: "12/25"}
     ]
 
     const [focus, setFocus] = useState<string>('number')
-
-    const {totalPrice} = useSelector((state: appStateType) => state.cart)
 
     const history = useHistory()
     const dispatch = useDispatch()
 
     const handlePayClick = (values: initialFormState) => {
-        dispatch(makePayment(values, totalPrice))
+        dispatch(makePayment(values, state?.totalPrice!, history))
     }
     const handleFocus = (el: string) => setFocus(el)
 
+    if(!state.totalPrice){
+        return <Redirect to={'/'}/>
+    }
 
     return (
         <div className={'checkout'}>
@@ -62,13 +71,14 @@ function Checkout() {
                                 {...props.values}
                                 // @ts-ignore
                                 focused={focus}
+                                placeholders={{name: 'CARDHOLDER'}}
                             />
                             {
                                 fieldsArray.map(el => <CheckoutLine key={el.name} name={el.name} label={el.label}
-                                                                    handleFocus={handleFocus}/>)
+                                                                    handleFocus={handleFocus} place={el.place}/>)
                             }
                             <div className={'cart__bottom'}>
-                                <p className={'cart__bottom-text'}>Total Price: <span>{totalPrice}$</span></p>
+                                <p className={'cart__bottom-text'}>Total Price: <span>{state.totalPrice}$</span></p>
                                 <div className={'cart__bottom-actions'}>
                                     <a className={'button button--empty'} onClick={() => history.goBack()}>
                                         <Arrow/>

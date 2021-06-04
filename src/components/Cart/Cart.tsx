@@ -32,7 +32,7 @@ function Cart() {
                                 <Arrow/>
                                 <span>Go Back</span>
                             </a>
-                            <Link to={'/checkout'}><button className={'button pay-btn'}><span>Checkout</span></button></Link>
+                            <Link to={{pathname:'/checkout', state: { totalPrice }}}><button className={'button pay-btn'}><span>Checkout</span></button></Link>
                         </div>
                     </div>
                 </div>
