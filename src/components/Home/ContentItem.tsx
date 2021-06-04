@@ -1,6 +1,6 @@
 import classnames from "classnames"
 import {useEffect, useState} from "react"
-import {CartItemType, ContentTypes, ResponseType} from "../../shared"
+import {Button, CartItemType, ContentTypes, ResponseType} from "../../shared"
 import LoadingBlock from "./LoadingBlock"
 
 
@@ -90,9 +90,9 @@ function ContentItem({contentTypes, handleAddToCart, ...item}: Props) {
             </div>
             <footer className={'item-bottom content-item__bottom'}>
                 <span className={'item-bottom__price'}>{getItemPrice(activePrice)} USD</span>
-                <button className={'item-bottom__cart button button--cart'} onClick={handleAddPizza}>
+                <Button cart onClick={handleAddPizza}>
                     <span>Add to cart</span>
-                </button>
+                </Button>
             </footer>
         </div>
     )

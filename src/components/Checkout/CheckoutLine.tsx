@@ -1,9 +1,10 @@
 import {Field} from "formik"
+import {FocusType} from "./Checkout"
 
 type Props = {
-    name: string,
+    name: FocusType,
     label: string,
-    handleFocus: (el: string) => void,
+    handleFocus: (el: FocusType) => void,
     place: string
 }
 

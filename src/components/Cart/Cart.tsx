@@ -1,4 +1,4 @@
-import {Container} from "../../shared"
+import {Button, Container} from "../../shared"
 import CartList from "./CartList"
 import {Redirect, useHistory, Link} from "react-router-dom"
 import {useSelector} from "react-redux"
@@ -28,16 +28,15 @@ function Cart() {
                     <div className={'cart__bottom'}>
                         <p className={'cart__bottom-text'}>Total Price: <span>{totalPrice}$</span></p>
                         <div className={'cart__bottom-actions'}>
-                            <a className={'button button--empty'} onClick={() => history.goBack()}>
+                            <Button empty onClick={() => history.goBack()}>
                                 <Arrow/>
                                 <span>Go Back</span>
-                            </a>
-                            <Link to={{pathname:'/checkout', state: { totalPrice }}}><button className={'button pay-btn'}><span>Checkout</span></button></Link>
+                            </Button>
+                            <Link to={{pathname:'/checkout', state: { totalPrice }}}><Button pay><span>Checkout</span></Button></Link>
                         </div>
                     </div>
                 </div>
             </Container>
-
         </main>
     )
 }

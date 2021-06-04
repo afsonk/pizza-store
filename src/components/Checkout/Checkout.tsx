@@ -1,12 +1,11 @@
 import Cards from 'react-credit-cards'
-import {useDispatch, useSelector} from "react-redux"
-import {appStateType} from "../../redux"
+import {useDispatch} from "react-redux"
 import {Redirect, useHistory} from "react-router-dom"
 import {useState} from "react"
 import 'react-credit-cards/lib/styles.scss'
 import './style.scss'
 import {makePayment} from "../../redux/checkout/actions"
-import {Container, validationSchema} from "../../shared"
+import {Container, validationSchema, Button} from "../../shared"
 import {Arrow} from "../../assets/svg"
 import { Form, Formik, FormikProps} from "formik"
 import CheckoutLine from "./CheckoutLine"
@@ -26,6 +25,8 @@ export type Props = {
     }
 }
 
+export type FocusType = "number" |"name" |"expiry" |"cvc"
+
 function Checkout({location: {state}}: Props) {
     const initialValues: initialFormState = {
         number: '',
@@ -38,9 +39,9 @@ function Checkout({location: {state}}: Props) {
         {name: 'name', label: 'Cardholder Name', place: "John Smith"},
         {name: 'cvc', label: 'CVC', place: "123"},
         {name: 'expiry', label: 'Expiry', place: "12/25"}
-    ]
+    ] as Array<{name: FocusType, label: string, place: string}>
 
-    const [focus, setFocus] = useState<string>('number')
+    const [focus, setFocus] = useState<FocusType>('number')
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -48,7 +49,9 @@ function Checkout({location: {state}}: Props) {
     const handlePayClick = (values: initialFormState) => {
         dispatch(makePayment(values, state?.totalPrice!, history))
     }
-    const handleFocus = (el: string) => setFocus(el)
+    const handleFocus = (el: FocusType) => {
+        setFocus(el)
+    }
 
     if(!state.totalPrice){
         return <Redirect to={'/'}/>
@@ -69,7 +72,6 @@ function Checkout({location: {state}}: Props) {
                         }}>
                             <Cards
                                 {...props.values}
-                                // @ts-ignore
                                 focused={focus}
                                 placeholders={{name: 'CARDHOLDER'}}
                             />
@@ -80,13 +82,13 @@ function Checkout({location: {state}}: Props) {
                             <div className={'cart__bottom'}>
                                 <p className={'cart__bottom-text'}>Total Price: <span>{state.totalPrice}$</span></p>
                                 <div className={'cart__bottom-actions'}>
-                                    <a className={'button button--empty'} onClick={() => history.goBack()}>
+                                    <Button empty onClick={() => history.goBack()}>
                                         <Arrow/>
                                         <span>Go Back</span>
-                                    </a>
-                                    <button className={'button pay-btn'} type={"submit"} >
+                                    </Button>
+                                    <Button pay type={"submit"} >
                                         <span>Pay</span>
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
                         </Form>
