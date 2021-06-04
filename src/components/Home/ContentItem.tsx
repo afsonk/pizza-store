@@ -21,9 +21,15 @@ function ContentItem({contentTypes, handleAddToCart, ...item}: Props) {
         const index = contentTypes.sizes.indexOf(initialSize!)
         setActivePrice(index)
     }
+
     const handleSizeClick = (size: string, index: number): void => {
         setSelectedSize(size)
         setActivePrice(index)
+    }
+    const handleDoughClick = (index: number) => {
+        setImageLoading(true)
+        setSelectedDough(index)
+
     }
 
     const getItemPrice = (activePrice: number): number => item.price[activePrice]
@@ -76,7 +82,7 @@ function ContentItem({contentTypes, handleAddToCart, ...item}: Props) {
                                 'disabled': !item.types.includes(index)
                             })}
                             key={dough}
-                            onClick={() => setSelectedDough(index)}
+                            onClick={() => handleDoughClick(index)}
                         >{dough}</li>)
                     }
                 </ul>
