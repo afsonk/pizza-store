@@ -1,14 +1,14 @@
 import Cards from 'react-credit-cards'
 import {useDispatch, useSelector} from "react-redux"
 import {appStateType} from "../../redux"
-import {Link, useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom"
 import {useState} from "react"
 import 'react-credit-cards/lib/styles.scss'
 import './style.scss'
 import {makePayment} from "../../redux/checkout/actions"
 import {Container, validationSchema} from "../../shared"
 import {Arrow} from "../../assets/svg"
-import {Form, Formik, FormikProps} from "formik"
+import { Form, Formik, FormikProps} from "formik"
 import CheckoutLine from "./CheckoutLine"
 
 export type initialFormState = {
@@ -40,12 +40,10 @@ function Checkout() {
     const dispatch = useDispatch()
 
     const handlePayClick = (values: initialFormState) => {
-        console.log(values)
-        dispatch(makePayment(totalPrice, history))
+        dispatch(makePayment(values, totalPrice))
     }
-    const handleFocus = (el: string) => {
-        setFocus(el)
-    }
+    const handleFocus = (el: string) => setFocus(el)
+
 
     return (
         <div className={'checkout'}>
@@ -53,17 +51,21 @@ function Checkout() {
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    onSubmit={values => console.log(values)}
+                    onSubmit={handlePayClick}
                 >
                     {(props: FormikProps<initialFormState>) => (
-                        <Form>
+                        <Form onSubmit={(e) => {
+                            e.preventDefault()
+                            props.handleSubmit()
+                        }}>
                             <Cards
                                 {...props.values}
                                 // @ts-ignore
                                 focused={focus}
                             />
                             {
-                                fieldsArray.map(el => <CheckoutLine name={el.name} label={el.label} handleFocus={handleFocus}/>)
+                                fieldsArray.map(el => <CheckoutLine key={el.name} name={el.name} label={el.label}
+                                                                    handleFocus={handleFocus}/>)
                             }
                             <div className={'cart__bottom'}>
                                 <p className={'cart__bottom-text'}>Total Price: <span>{totalPrice}$</span></p>
@@ -72,11 +74,9 @@ function Checkout() {
                                         <Arrow/>
                                         <span>Go Back</span>
                                     </a>
-                                    <Link to={'/checkout'}>
-                                        <button className={'button pay-btn'} type={"submit"}>
-                                            <span>Pay</span>
-                                        </button>
-                                    </Link>
+                                    <button className={'button pay-btn'} type={"submit"} >
+                                        <span>Pay</span>
+                                    </button>
                                 </div>
                             </div>
                         </Form>
@@ -88,3 +88,5 @@ function Checkout() {
 }
 
 export default Checkout
+
+
