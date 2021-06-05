@@ -1,6 +1,6 @@
 import {useEffect} from "react"
 import ContentItem from "./ContentItem"
-import {CartItemType, ContentTypes} from "../../shared"
+import {CartItemType, ContentTypes} from "../../utills"
 import {useDispatch, useSelector} from "react-redux"
 import {fetchPizzas} from "../../redux/pizzas/actions"
 import {appStateType} from "../../redux"

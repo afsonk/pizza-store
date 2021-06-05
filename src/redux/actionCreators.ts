@@ -3,7 +3,6 @@ import {SetActiveCategory, SetActiveSort} from "./filter/types"
 import {AddItemToCart, ClearCart, MinusItemFromCart, PlusItemInCart, RemoveItemFromCart} from "./cart/types"
 
 
-
 export type actionsType =
     SetPizzasType
     | ToggleIsLoadingType

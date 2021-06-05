@@ -2,7 +2,7 @@ import classnames from "classnames"
 import {useEffect, useRef, useState} from "react"
 import {SortArrowSVG} from "../../assets/svg"
 import { actionsType} from "../../redux/actionCreators"
-import {SortType} from "../../shared/types"
+import {SortType} from "../../utills/types"
 import {Dispatch} from "redux"
 import {setActiveSort} from "../../redux/filter/actions"
 

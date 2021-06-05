@@ -1,4 +1,4 @@
-import {CartItemType} from "../../shared/types"
+import {CartItemType} from "../../utills/types"
 
 export const addToCart = 'cart/addItem'
 export const removeFromCart = 'cart/removeItem'

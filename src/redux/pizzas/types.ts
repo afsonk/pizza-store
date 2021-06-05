@@ -1,4 +1,4 @@
-import {ResponseType} from "../../shared/types"
+import {ResponseType} from "../../utills/types"
 
 export const setPizzas = 'pizzas/setPizzas'
 export const isLoading = 'pizzas/isLoading'

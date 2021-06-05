@@ -1,6 +1,6 @@
 import CartItem from "./CartItem"
 import {CartStateItems} from "../../redux/cart/cartReducer"
-import {getDough, getSize} from "../../shared"
+import {getDough, getSize} from "../../utills"
 
 
 type Props = {

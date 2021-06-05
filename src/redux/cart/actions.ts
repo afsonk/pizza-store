@@ -1,4 +1,4 @@
-import {CartItemType} from "../../shared/types"
+import {CartItemType} from "../../utills/types"
 import {
     AddItemToCart,
     addToCart,

@@ -1,6 +1,6 @@
 import classnames from "classnames"
 import {useEffect, useState} from "react"
-import {Button, CartItemType, ContentTypes, ResponseType} from "../../shared"
+import {Button, CartItemType, ContentTypes, ResponseType} from "../../utills"
 import LoadingBlock from "./LoadingBlock"
 
 

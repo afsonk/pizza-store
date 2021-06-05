@@ -5,7 +5,7 @@ import {useState} from "react"
 import 'react-credit-cards/lib/styles.scss'
 import './style.scss'
 import {makePayment} from "../../redux/checkout/actions"
-import {Container, validationSchema, Button} from "../../shared"
+import {Container, validationSchema, Button} from "../../utills"
 import {Arrow} from "../../assets/svg"
 import { Form, Formik, FormikProps} from "formik"
 import CheckoutLine from "./CheckoutLine"

@@ -1,9 +1,9 @@
 import {Dispatch} from "redux"
 import axios from "axios"
-import {ResponseType, SortType} from "../../shared/types"
+import {ResponseType, SortType} from "../../utills/types"
 import {actionsType} from "../actionCreators"
 import {isLoading, setPizzas, SetPizzasType, ToggleIsLoadingType} from "./types"
-import {instance} from "../../shared/api"
+import {instance} from "../../utills/api"
 
 export const setPizzasInState = (payload: ResponseType[]): SetPizzasType => ({
     type: setPizzas,

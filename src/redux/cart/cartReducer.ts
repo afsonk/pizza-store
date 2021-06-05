@@ -1,5 +1,5 @@
-import { getUniqueID } from "../../shared/getUniqueID"
-import {CartItemType} from "../../shared/types"
+import { getUniqueID } from "../../utills/getUniqueID"
+import {CartItemType} from "../../utills/types"
 import {actionsType} from "../actionCreators"
 
 

@@ -1,4 +1,4 @@
-import {Container} from "../../shared"
+import {Container} from "../../utills"
 import {Redirect, Link} from "react-router-dom"
 import {Arrow} from "../../assets/svg"
 
@@ -6,7 +6,8 @@ import {Arrow} from "../../assets/svg"
 export type Props = {
     location: {
         state: {
-            id?: number
+            id?: number,
+            name?: string
         }
     }
 }
@@ -19,7 +20,7 @@ function CheckoutResult({location: {state}}: Props) {
         <div className={'result__page'}>
             <Container>
                 <div className={'cart__content result-content'}>
-                    <h1 className={'result__header'}>Thank you for your purchase!</h1>
+                    <h1 className={'result__header'}>Thank you {state.name} for your purchase!</h1>
                     <p className={'result__text'}>Your order id is {state?.id}</p>
                     <Link className={'button button--empty'} to={'/'}>
                         <Arrow/>

@@ -1,4 +1,4 @@
-import {SortType} from "../../shared/types"
+import {SortType} from "../../utills/types"
 import {SetActiveCategory, SetActiveSort, setCategory, setSort} from "./types"
 
 export const setActiveCategory = (payload: null | number): SetActiveCategory => ({

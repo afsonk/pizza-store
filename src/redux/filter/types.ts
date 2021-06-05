@@ -1,4 +1,4 @@
-import {SortType} from "../../shared/types"
+import {SortType} from "../../utills/types"
 
 export const setCategory = 'filter/category'
 export const setSort = 'filter/sort'

@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux"
 import {appStateType} from "../../redux"
 import CartItem from "../Cart/CartItem"
-import {getDough, getSize} from "../../shared"
+import {getDough, getSize} from "../../utills"
 import classnames from "classnames"
 import EmptyCartPopup from "./EmptyCartPopup"
 
