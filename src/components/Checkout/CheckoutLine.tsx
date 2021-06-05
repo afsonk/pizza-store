@@ -1,6 +1,6 @@
 import {Field} from "formik"
 import {FocusType} from "./Checkout"
-import {useState} from "react"
+
 
 type Props = {
     name: FocusType,
@@ -17,14 +17,14 @@ function CustomInput({name, label, handleFocus, place}: Props) {
     }
     return (
         <Field name={name}>
-            {({field: {name, value, onChange, onBlur}, meta}: any) => (
+            {({field: {value, ...rest}, meta}: any) => (
                 <div className={'checkout__line'}>
                     <label className={'form__label'} htmlFor={name}>{label}</label>
-                    <input className={'input'} type="text"
+                    <input className={'input'}
+                           type={name === "name" ? "text" : "tel"}
                            name={name}
                            value={name !== 'expiry' ? value : handleDateChange(value)}
-                           onChange={onChange}
-                           onBlur={onBlur}
+                           {...rest}
                            placeholder={place}
                            onFocus={() => handleFocus(name)}
                     />
