@@ -3,6 +3,7 @@
 export function CartSVG() {
     return (
         <svg
+            className={'cart__svg'}
             width="18"
             height="18"
             viewBox="0 0 18 18"

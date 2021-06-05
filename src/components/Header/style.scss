@@ -25,6 +25,54 @@
   align-items: center;
   position: relative;
   height: 70px;
+  @media (max-width: 805px) {
+    &.mobile{
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      .header__cart-price, .button__delimiter{
+        display: none;
+      }
+      .header__cart-count{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 25px;
+        height: 24px;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 2px;
+        line-height: 0.9;
+        background-color: #fff;
+        border: 1px solid $orange;
+        border-radius: 50%;
+        color: $orange;
+      }
+      .button{
+        min-width: inherit;
+      }
+      .button--cart{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 28px;
+        background-image: radial-gradient(100% 100% at 50% 0%, RGB(255, 111, 0) 0%, RGB(247, 91, 0) 100%);
+        box-shadow: RGB(0 0 0 / 20%) 0px 10px 20px;
+        transition: all 0.25s ease 0s;
+        user-select: none;
+        z-index: 3;
+      }
+      .cart__svg{
+        position: absolute;
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
 }
 
 .cart__popup{

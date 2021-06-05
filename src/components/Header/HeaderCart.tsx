@@ -4,10 +4,11 @@ import {useSelector} from "react-redux"
 import {appStateType} from "../../redux"
 import {useState} from "react"
 import CartPopup from "./CartPoup"
+import classnames from "classnames"
 
 
 function HeaderCart() {
-    const {totalPrice, totalCount} = useSelector((state:appStateType ) => state.cart)
+    const {totalPrice, totalCount} = useSelector((state: appStateType) => state.cart)
     const [isHovered, setIsHovered] = useState(false)
 
     const handleMouseHover = () => {
@@ -15,12 +16,12 @@ function HeaderCart() {
     }
 
     return (
-        <div className="header__cart" onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover}>
+        <div className={classnames('mobile',"header__cart")} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseHover}>
             <Link to={"/cart"} className="button button--cart">
-                <span>{totalPrice} $</span>
-                <div className="button__delimiter"></div>
+                    <span className={'header__cart-price'}>{totalPrice} $</span>
+                    <div className="button__delimiter"></div>
                 <CartSVG/>
-                <span>{totalCount}</span>
+                    <span className={'header__cart-count'}>{totalCount}</span>
             </Link>
             {
                 isHovered && <CartPopup/>
