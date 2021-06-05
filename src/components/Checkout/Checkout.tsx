@@ -1,5 +1,5 @@
 import Cards from 'react-credit-cards'
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {Redirect, useHistory} from "react-router-dom"
 import {useState} from "react"
 import 'react-credit-cards/lib/styles.scss'
@@ -9,6 +9,7 @@ import {Container, validationSchema, Button} from "../../utills"
 import {Arrow} from "../../assets/svg"
 import { Form, Formik, FormikProps} from "formik"
 import CheckoutLine from "./CheckoutLine"
+import {appStateType} from "../../redux"
 
 export type initialFormState = {
     number: string,
@@ -17,17 +18,9 @@ export type initialFormState = {
     name: string
 }
 
-export type Props = {
-    location: {
-        state: {
-            totalPrice?: number
-        }
-    }
-}
-
 export type FocusType = "number" |"name" |"expiry" |"cvc"
 
-function Checkout({location: {state}}: Props) {
+function Checkout() {
     const initialValues: initialFormState = {
         number: '',
         expiry: '',
@@ -42,18 +35,18 @@ function Checkout({location: {state}}: Props) {
     ] as Array<{name: FocusType, label: string, place: string}>
 
     const [focus, setFocus] = useState<FocusType>('number')
-
+    const {totalPrice} = useSelector((state: appStateType) => state.cart)
     const history = useHistory()
     const dispatch = useDispatch()
 
     const handlePayClick = (values: initialFormState) => {
-        dispatch(makePayment(values, state?.totalPrice!, history))
+        dispatch(makePayment(values, totalPrice, history))
     }
     const handleFocus = (el: FocusType) => {
         setFocus(el)
     }
 
-    if(!state.totalPrice){
+    if(!totalPrice){
         return <Redirect to={'/'}/>
     }
 
@@ -80,7 +73,7 @@ function Checkout({location: {state}}: Props) {
                                                                     handleFocus={handleFocus} place={el.place}/>)
                             }
                             <div className={'cart__bottom'}>
-                                <p className={'cart__bottom-text'}>Total Price: <span>{state.totalPrice}$</span></p>
+                                <p className={'cart__bottom-text'}>Total Price: <span>{totalPrice}$</span></p>
                                 <div className={'cart__bottom-actions'}>
                                     <Button empty onClick={() => history.goBack()}>
                                         <Arrow/>

@@ -6,7 +6,8 @@ export const validationSchema = Yup.object().shape({
         .test('test-number',
             'Credit Card number is invalid',
             value => valid.number(value).isValid)
-        .required('Credit Card number is required'),
+        .required('Credit Card number is required')
+        .max(16, 'Maximum length is 16 characters'),
     expiry:  Yup.string()
         .typeError('Not a valid expiration date. Example: MM/YY')
         .max(5, 'Not a valid expiration date. Example: MM/YY')
@@ -69,10 +70,13 @@ export const validationSchema = Yup.object().shape({
             value => valid.cvv(value).isValid
         )
         .label('CVC')
-        .min(3)
-        .max(4)
+        .min(3, 'Minimum length is 3')
+        .max(3, 'Maximum length is 3')
         .required('CVC code is required'),
     name: Yup.string()
+        .test(
+            'Cardholder name is invalid',
+            value => valid.cardholderName(value).isValid)
         .label('Name on card')
         .required('Cardholder is Required'),
 })
