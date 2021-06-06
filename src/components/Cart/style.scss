@@ -139,7 +139,8 @@
       color: $orange;
     }
   }
-  &-actions{
+}
+.cart__bottom-actions{
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
@@ -149,6 +150,8 @@
       flex-wrap: wrap;
       margin: 20px 0;
     }
+  a, .pay-btn{
+    order: -1;
   }
 }
 .cart__detailed{
