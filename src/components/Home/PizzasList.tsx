@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux"
 import {fetchPizzas} from "../../redux/pizzas/actions"
 import {appStateType} from "../../redux"
 import LoadingBlock from "./LoadingBlock"
-import {addItemToCart} from "../../redux/cart/actions"
+import {addItemToCart} from "../../redux/cart/cartSlice"
 
 
 function PizzasList() {

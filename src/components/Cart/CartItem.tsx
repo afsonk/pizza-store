@@ -1,6 +1,6 @@
 import {Bucket} from "../../assets/svg"
 import {useDispatch} from "react-redux"
-import {minusItemFromCart, plusItemInCart, removeItemFromCart} from "../../redux/cart/actions"
+import {minusItemFromCart,removeItemFromCart, plusItemInCart} from "../../redux/cart/cartSlice"
 import {DoubleButton, CartItemType, getUniqueID} from "../../utills"
 import classnames from "classnames"
 

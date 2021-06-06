@@ -1,16 +1,14 @@
 import classnames from "classnames"
 import {useEffect, useRef, useState} from "react"
 import {SortArrowSVG} from "../../assets/svg"
-import { actionsType} from "../../redux/actionCreators"
 import {SortType} from "../../utills/types"
-import {Dispatch} from "redux"
-import {setActiveSort} from "../../redux/filter/actions"
+import {setActiveSort} from "../../redux/filter/filterSlice"
 
 
 type Props = {
     sort: Array<SortType>,
     activeSort: SortType,
-    dispatch: Dispatch<actionsType>
+    dispatch: any
 }
 
 function Sort({sort, activeSort, dispatch}: Props) {

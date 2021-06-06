@@ -1,25 +1,25 @@
-import {applyMiddleware,combineReducers,createStore, compose} from "redux"
-import thunk from 'redux-thunk'
-import pizzasReducer from "./pizzas/pizzasReducer"
-import filterReducer from "./filter/filterReducer"
-import cartReducer from "./cart/cartReducer"
+
+import {configureStore,combineReducers} from "@reduxjs/toolkit"
+
+import pizzasSlice from "./pizzas/pizzasSlice"
+import filterSlice from "./filter/filterSlice"
+import cartSlice from "./cart/cartSlice"
+
 
 
 const rootReducer = combineReducers({
-    pizzaItems: pizzasReducer,
-    filterCat: filterReducer,
-    cart: cartReducer,
+    pizzaItems: pizzasSlice,
+    filterCat: filterSlice,
+    cart: cartSlice,
 })
 
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-const store = createStore(
-    rootReducer,
-    composeEnhancers(applyMiddleware(thunk))
-)
+const store = configureStore({
+    reducer: rootReducer,
+})
 
 type returnType = typeof rootReducer
 
 export type appStateType = ReturnType<returnType>
+export type appDispatchType = typeof store.dispatch
 
 export default store

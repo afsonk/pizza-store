@@ -23,10 +23,6 @@ export const validationSchema = Yup.object().shape({
                 if (!expirationDate) {
                     return false
                 }
-                const today = new Date()
-                    .getFullYear()
-                    .toString()
-                    .substr(-2)
 
                 const [expMonth] = expirationDate.split('/')
 

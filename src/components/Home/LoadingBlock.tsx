@@ -9,9 +9,9 @@ function LoadingBlock({image}: Props) {
         <ContentLoader
             className="pizza-block"
             speed={2}
-            width={260}
+            width={image ? 260 : 290}
             height={image ? 260 : 460}
-            viewBox={`0 0 ${image ? "270 260" : "280 460"}`}
+            viewBox={`0 0 ${image ? "270 260" : "290 470"}`}
             backgroundColor="#f3f3f3"
             foregroundColor="#ecebeb">
             <circle cx="132" cy="142" r="115"/>

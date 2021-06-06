@@ -6,7 +6,7 @@ import Sort from "./Sort"
 import ContentTitle from "./ContentTitle"
 import PizzasList from "./PizzasList"
 import {SortType} from "../../utills/types"
-import {setActiveCategory} from "../../redux/filter/actions"
+import {setActiveCategory} from "../../redux/filter/filterSlice"
 import './style.scss'
 
 function Home() {

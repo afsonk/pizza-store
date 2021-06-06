@@ -1,5 +1,5 @@
 import CartItem from "./CartItem"
-import {CartStateItems} from "../../redux/cart/cartReducer"
+import {CartStateItems} from "../../redux/cart/cartSlice"
 import {getDough, getSize} from "../../utills"
 
 
