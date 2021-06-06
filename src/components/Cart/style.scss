@@ -149,10 +149,10 @@
       grid-gap: 20px;
       flex-wrap: wrap;
       margin: 20px 0;
+      a, .pay-btn{
+        order: -1;
+      }
     }
-  a, .pay-btn{
-    order: -1;
-  }
 }
 .cart__detailed{
   width: -webkit-fill-available;
