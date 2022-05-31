@@ -1,6 +1,6 @@
 import Cards from 'react-credit-cards'
 import {useDispatch, useSelector} from "react-redux"
-import {Redirect, useHistory} from "react-router-dom"
+import {Navigate, useNavigate} from "react-router-dom"
 import {useState} from "react"
 import 'react-credit-cards/lib/styles.scss'
 import './style.scss'
@@ -9,7 +9,7 @@ import {Container, validationSchema, Button} from "../../utills"
 import {Arrow} from "../../assets/svg"
 import { Form, Formik, FormikProps} from "formik"
 import CheckoutLine from "./CheckoutLine"
-import {appStateType} from "../../redux"
+import {appStateType, useAppDispatch} from "../../redux"
 
 export type initialFormState = {
     number: string,
@@ -36,18 +36,18 @@ function Checkout() {
 
     const [focus, setFocus] = useState<FocusType>('number')
     const {totalPrice} = useSelector((state: appStateType) => state.cart)
-    const history = useHistory()
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
 
     const handlePayClick = (values: initialFormState) => {
-        dispatch(makePayment(values, totalPrice, history))
+        dispatch(makePayment(values, totalPrice, navigate))
     }
     const handleFocus = (el: FocusType) => {
         setFocus(el)
     }
 
     if(!totalPrice){
-        return <Redirect to={'/'}/>
+        return <Navigate to={'/'}/>
     }
 
     return (
@@ -75,7 +75,7 @@ function Checkout() {
                             <div className={'cart__bottom'}>
                                 <p className={'cart__bottom-text'}>Total Price: <span>{totalPrice}$</span></p>
                                 <div className={'cart__bottom-actions'}>
-                                    <Button empty onClick={() => history.goBack()}>
+                                    <Button empty onClick={() => navigate(-1)}>
                                         <Arrow/>
                                         <span>Go Back</span>
                                     </Button>
