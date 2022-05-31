@@ -3,7 +3,7 @@ import ContentItem from "./ContentItem"
 import {CartItemType, ContentTypes} from "../../utills"
 import {useDispatch, useSelector} from "react-redux"
 import {fetchPizzas} from "../../redux/pizzas/actions"
-import {appStateType} from "../../redux"
+import {appDispatchType, appStateType, useAppDispatch} from "../../redux"
 import LoadingBlock from "./LoadingBlock"
 import {addItemToCart} from "../../redux/cart/cartSlice"
 
@@ -11,8 +11,7 @@ import {addItemToCart} from "../../redux/cart/cartSlice"
 function PizzasList() {
     const {pizzas, isLoading} = useSelector((state: appStateType) => state.pizzaItems)
     const {sortBy, activeCategory} = useSelector((state: appStateType) => state.filterCat)
-
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(fetchPizzas(activeCategory, sortBy.name, sortBy.order))

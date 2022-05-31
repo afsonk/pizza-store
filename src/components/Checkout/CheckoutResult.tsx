@@ -1,21 +1,21 @@
 import {Container} from "../../utills"
-import {Redirect, Link} from "react-router-dom"
+import {Navigate, Link, useLocation} from "react-router-dom"
 import {Arrow} from "../../assets/svg"
 import success from "../../assets/img/success.png"
 
 
 export type Props = {
-    location: {
-        state: {
-            id?: number,
-            name?: string
-        }
+    state: {
+        id?: number,
+        name?: string
     }
 }
 
-function CheckoutResult({location: {state}}: Props) {
-
-    if (!state.id) {return <Redirect to={'/'}/>}
+function CheckoutResult() {
+    const {state} = useLocation() as Props
+    if (!state.id) {
+        return <Navigate to={'/'}/>
+    }
 
     return (
         <div className={'result__page'}>

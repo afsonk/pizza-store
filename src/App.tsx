@@ -1,21 +1,23 @@
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import {Provider} from "react-redux"
 import store from "./redux"
 import './style.scss'
-import {Cart, Header, Home, CartEmpty, Checkout, CheckoutResult} from "./components"
+import {Cart, Header, Home, CartEmpty, CheckoutResult, Checkout} from "./components"
+import { Props } from "./components/Checkout/CheckoutResult"
 
 function App() {
     return (
         <Router>
             <Provider store={store}>
                 <Header/>
-                <Switch>
-                    <Route exact path={'/'} component={Home}/>
-                    <Route exact path={'/cart'} component={Cart}/>
-                    <Route exact path={'/cartEmpty'} component={CartEmpty}/>
-                    <Route exact path={'/checkout'} component={Checkout}/>
-                    <Route exact path={'/checkout/result'} component={CheckoutResult}/>
-                </Switch>
+                <Routes>
+                    <Route path={'/'} element={<Home/>}/>
+                    <Route path={'/cart'} element={<Cart/>}/>
+                    <Route path={'/cartEmpty'} element={<CartEmpty/>}/>
+                    <Route path={'/checkout'} element={<Checkout />}/>
+                    {/* @ts-ignore */}
+                    <Route path={'/checkout/result'} element={<CheckoutResult/>}/>
+                </Routes>
             </Provider>
         </Router>
     )

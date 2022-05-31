@@ -2,17 +2,16 @@ import {Container} from "../../utills"
 import './style.scss'
 import Logo from "./Logo"
 import HeaderCart from "./HeaderCart"
-import {Route} from "react-router-dom"
+import {useLocation} from "react-router-dom"
 
 function Header() {
+    const location = useLocation()
     return (
         <header className={'header'}>
             <Container>
                 <div className={'header__inner'}>
                     <Logo/>
-                    <Route exact path={'/'}>
-                        <HeaderCart/>
-                    </Route>
+                    {location.pathname === '/' && <HeaderCart/>}
                 </div>
             </Container>
         </header>

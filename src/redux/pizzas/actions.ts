@@ -1,12 +1,11 @@
-import {SortType} from "../../utills/types"
+import {SortType} from "../../utills"
 import {toggleIsLoading, setPizzasInState} from './pizzasSlice'
 import {instance} from "../../utills/api"
-import {appDispatchType} from "../index"
+import {appDispatchType, appStateType, ThunkAction} from "../index"
+import {Action, AnyAction, Dispatch, ThunkDispatch} from "@reduxjs/toolkit"
 
 
-
-
-export const fetchPizzas = (activeCategory: null | number, sortBy: SortType, order: string) => (dispatch: appDispatchType) => {
+export const fetchPizzas = (activeCategory: null | number, sortBy: SortType, order: string): ThunkAction<void, appStateType, unknown, AnyAction> => (dispatch) => {
     dispatch(toggleIsLoading(true))
     instance.get(`/pizzas?${activeCategory != null ? `category=${activeCategory}` : ''}&_sort=${sortBy === 'price' && Array.isArray(sortBy) ? sortBy[0] : sortBy}&_order=${order}`)
         .then(({data}) => {

@@ -1,7 +1,8 @@
-import ReactDOM from 'react-dom'
 import App from "./App"
 import 'normalize.css'
+import {createRoot} from "react-dom/client"
 
-const elem = document.getElementById('root')
+const element = document.getElementById('root') as Element
+const root = createRoot(element)
 
-ReactDOM.render(<App/>, elem)
+root.render(<App/>)
