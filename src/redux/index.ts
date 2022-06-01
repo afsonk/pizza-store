@@ -1,31 +1,28 @@
+import { configureStore, combineReducers, Action, ThunkDispatch } from '@reduxjs/toolkit'
 
-import {configureStore, combineReducers, Action, ThunkDispatch} from "@reduxjs/toolkit"
-
-import pizzasSlice from "./pizzas/pizzasSlice"
-import filterSlice from "./filter/filterSlice"
-import cartSlice from "./cart/cartSlice"
-import {useDispatch} from "react-redux"
-
-
+import { useDispatch } from 'react-redux'
+import pizzasSlice from './pizzas/pizzasSlice'
+import filterSlice from './filter/filterSlice'
+import cartSlice from './cart/cartSlice'
 
 const rootReducer = combineReducers({
-    pizzaItems: pizzasSlice,
-    filterCat: filterSlice,
-    cart: cartSlice,
+  pizzaItems: pizzasSlice,
+  filterCat: filterSlice,
+  cart: cartSlice
 })
 
 const store = configureStore({
-    reducer: rootReducer,
+  reducer: rootReducer
 })
 
 type returnType = typeof rootReducer
 
 export type ThunkAction<
-    R, // Return type of the thunk function
-    S, // state type used by getState
-    E, // any "extra argument" injected into the thunk
-    A extends Action // known types of actions that can be dispatched
-    > = (dispatch: ThunkDispatch<S, E, A>, getState: () => S, extraArgument: E) => R
+  R, // Return type of the thunk function
+  S, // state type used by getState
+  E, // any "extra argument" injected into the thunk
+  A extends Action // known types of actions that can be dispatched
+> = (dispatch: ThunkDispatch<S, E, A>, getState: () => S, extraArgument: E) => R
 
 export type appStateType = ReturnType<returnType>
 export type appDispatchType = typeof store.dispatch

@@ -1,5 +1,5 @@
-import {CartItemType} from "./types"
+import { CartItemType } from './types'
 
 export function getUniqueID(action: CartItemType): string {
-    return `${action.id}-${action.size}-${action.type}`
+  return `${action.id}-${action.size}-${action.type}`
 }
