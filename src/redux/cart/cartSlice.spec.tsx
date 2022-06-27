@@ -35,9 +35,12 @@ describe('cartSlice', () => {
   })
 
   it('addItemToCart action should add item to the cart', () => {
-    expect(cartSlice(initialState, addItemToCart(cartItemMock)).items['123-small-0']).toEqual(
-      cartItemMock
-    )
+    const expected = {
+      pizzas: [cartItemMock],
+      totalPrice: cartItemMock.price,
+      totalCount: 1
+    }
+    expect(cartSlice(initialState, addItemToCart(cartItemMock)).items['123-small-0']).toEqual(expected)
     expect(cartSlice(initialState, addItemToCart(cartItemMock)).totalPrice).toBe(cartItemMock.price)
     expect(cartSlice(initialState, addItemToCart(cartItemMock)).totalCount).toBe(1)
   })
