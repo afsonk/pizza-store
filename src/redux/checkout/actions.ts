@@ -1,9 +1,9 @@
 import { NavigateFunction } from 'react-router'
 import { AnyAction } from '@reduxjs/toolkit'
 import { appStateType, ThunkAction } from '../index'
-import { initialFormState } from '../../components/Checkout/Checkout'
+import { initialFormState } from '../../pages/Checkout/Checkout'
 import { clearCart } from '../cart/cartSlice'
-import { instance } from '../../utills/api'
+import { instance } from '../../api/api'
 import { OrdersResponseType } from './types'
 
 export const makePayment =

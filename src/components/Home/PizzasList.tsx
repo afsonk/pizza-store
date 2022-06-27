@@ -1,20 +1,13 @@
-import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import ContentItem from './ContentItem'
 import { CartItemType, ContentTypes } from '../../utills'
-import { fetchPizzas } from '../../redux/pizzas/actions'
 import { appStateType, useAppDispatch } from '../../redux'
 import LoadingBlock from './LoadingBlock'
 import { addItemToCart } from '../../redux/cart/cartSlice'
 
 function PizzasList() {
   const { pizzas, isLoading } = useSelector((state: appStateType) => state.pizzaItems)
-  const { sortBy, activeCategory } = useSelector((state: appStateType) => state.filterCat)
   const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(fetchPizzas(activeCategory, sortBy.name, sortBy.order))
-  }, [activeCategory, sortBy])
 
   const contentTypes: ContentTypes = {
     sizes: ['small', 'medium', 'large'],
@@ -25,14 +18,14 @@ function PizzasList() {
   }
 
   return (
-    <div className='content__list'>
+    <div className='content__list' data-testid='pizzasList'>
       {isLoading
         ? Array(4)
             .fill(0)
             .map((_, index) => {
               return <LoadingBlock key={index} />
             })
-        : pizzas!.map((item) => {
+        : pizzas?.map((item) => {
             return (
               <ContentItem
                 key={item.id}

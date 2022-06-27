@@ -14,6 +14,7 @@ function LoadingBlock({ image }: Props) {
       viewBox={`0 0 ${image ? '270 260' : '290 470'}`}
       backgroundColor='#f3f3f3'
       foregroundColor='#ecebeb'
+      data-testid='loadingBlock'
     >
       <circle cx='132' cy='142' r='115' />
       {!image && <rect x='0' y='273' rx='6' ry='6' width='280' height='26' />}

@@ -5,7 +5,7 @@ import { Arrow } from '../../assets/svg'
 
 function CartEmpty() {
   return (
-    <main className='cart'>
+    <main className='cart' data-testid='cartEmpty'>
       <Container>
         <div className='cart__content empty'>
           <div className='cart__content-top'>

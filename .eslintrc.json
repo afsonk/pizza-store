@@ -1,11 +1,14 @@
 {
+  "root": true,
   "parser": "@typescript-eslint/parser",
   "extends": [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style"
   ],
   "plugins": ["@typescript-eslint", "react", "prettier", "react-hooks"],
   "parserOptions": {
@@ -22,7 +25,7 @@
     "react/prop-types": "off",
     "react/display-name": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "prettier/prettier": ["warn", { "endOfLine": "auto" }],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -42,6 +45,5 @@
     "browser": true,
     "es6": true,
     "jest": true
-  },
-  "root": true
+  }
 }

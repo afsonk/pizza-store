@@ -1,15 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { SortType } from '../../utills'
 
-export type StateType = {
-  activeCategory: null | number
-  sortBy: {
-    name: SortType
-    order: 'asc' | 'desc'
-  }
+export type sortByType = {
+  name: SortType
+  order: 'asc' | 'desc'
 }
 
-const initialState: StateType = {
+export type FilterSliceStateType = {
+  activeCategory: null | number
+  sortBy: sortByType
+}
+
+const initialState: FilterSliceStateType = {
   activeCategory: null,
   sortBy: {
     name: 'rating',
@@ -21,10 +23,10 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    setActiveCategory(state, action) {
+    setActiveCategory(state, action: PayloadAction<number | null>) {
       state.activeCategory = action.payload
     },
-    setActiveSort(state, action) {
+    setActiveSort(state, action: PayloadAction<SortType>) {
       state.sortBy.name = action.payload
     }
   }

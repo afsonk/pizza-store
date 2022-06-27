@@ -18,10 +18,7 @@ export const validationSchema = Yup.object().shape({
 
       const [expMonth] = expirationDate.split('/')
 
-      if (Number(expMonth) > 12) {
-        return false
-      }
-      return true
+      return Number(expMonth) <= 12
     })
     .test(
       'test-credit-card-expiration-date',
@@ -40,11 +37,7 @@ export const validationSchema = Yup.object().shape({
         if (Number(expYear) < Number(yearToday)) {
           return false
         }
-        if (Number(expMonth) < monthToday && Number(expYear) <= Number(yearToday)) {
-          return false
-        }
-
-        return true
+        return !(Number(expMonth) < monthToday && Number(expYear) <= Number(yearToday))
       }
     ),
   cvc: Yup.string()

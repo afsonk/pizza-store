@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import { Bucket } from '../../assets/svg'
 import { minusItemFromCart, removeItemFromCart, plusItemInCart } from '../../redux/cart/cartSlice'
 import { DoubleButton, CartItemType, getUniqueID } from '../../utills'
+import { memo } from 'react'
 
 type Props = {
   totalPrice: number
@@ -35,7 +36,7 @@ function CartItem({
   }
 
   return (
-    <div className='cart__item'>
+    <div className='cart__item' data-testid='cartItem'>
       <div
         className={classnames('cart__item-inner', {
           popup: isPopup
@@ -99,4 +100,4 @@ function CartItem({
   )
 }
 
-export default CartItem
+export default memo(CartItem)

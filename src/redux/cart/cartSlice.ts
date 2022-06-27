@@ -1,65 +1,51 @@
-import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { CartItemType, getUniqueID } from '../../utills'
+import { totalSumSelector } from './selectors'
 
-type identType = {
+export type identType = {
   pizzas: CartItemType[]
   totalPrice: number
+  totalCount: number
 }
 
 export type CartStateItems = {
   [id: string]: identType
 }
 
-type State = {
+export type CartSliceStateType = {
   items: CartStateItems
   totalCount: number
   totalPrice: number
 }
 
-const initialState: State = {
+const initialState: CartSliceStateType = {
   items: {},
   totalCount: 0,
   totalPrice: 0
 }
 
-const stateItemSelector = (state: identType) => state.pizzas
-const totalItemsSelector = (state: CartItemType[]) => state
-const arrayMakingSelector = (state: CartStateItems) => state
-
-const singleItemSumSelector = createSelector(stateItemSelector, (arr) =>
-  arr.reduce((acc, next: CartItemType) => acc + next.price, 0)
-)
-const totalSumSelector = createSelector(totalItemsSelector, (arr) =>
-  arr.reduce((acc, next: CartItemType) => acc + next.price, 0)
-)
-
-const makeArray = createSelector(arrayMakingSelector, (arr: any): CartItemType[] => {
-  const preArr = []
-  for (const item in arr) {
-    preArr.push(arr[item].pizzas)
-  }
-  return [].concat(...Object.values(preArr))
-})
-
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: initialState as State,
+  initialState,
   reducers: {
     addItemToCart(state, action: PayloadAction<CartItemType>) {
       const ident: string = getUniqueID(action.payload)
 
       if (!state.items[ident]) {
-        state.items[ident] = { pizzas: [], totalPrice: 0 }
+        state.items[ident] = { pizzas: [], totalPrice: 0, totalCount: 0 }
       }
+
       const newItems = state.items[ident]
-      newItems.pizzas.push(action.payload)
-      newItems.totalPrice = singleItemSumSelector(newItems)
+      if (!newItems.pizzas[0]) {
+        newItems.pizzas.push(action.payload)
+      }
 
-      const arr: CartItemType[] = makeArray(state.items)
+      newItems.totalCount = ++newItems.totalCount
+      newItems.totalPrice = newItems.pizzas[0].price * newItems.totalCount
 
-      state.totalCount = arr.length
-      state.totalPrice = totalSumSelector(arr)
+      state.totalCount = ++state.totalCount
+      state.totalPrice = totalSumSelector(state.items)
     },
     removeItemFromCart(state, action: PayloadAction<string>) {
       const currentPrice = state.items[action.payload].totalPrice
@@ -72,24 +58,19 @@ const cartSlice = createSlice({
     },
     minusItemFromCart(state, action: PayloadAction<string>) {
       const items = state.items[action.payload]
-      items.pizzas.pop()
       items.totalPrice -= items.pizzas[0].price
+      items.totalCount = --items.totalCount
 
-      const arr: CartItemType[] = makeArray(state.items)
-
-      state.totalPrice = totalSumSelector(arr)
-      state.totalCount = arr.length
+      state.totalCount = --state.totalCount
+      state.totalPrice = totalSumSelector(state.items)
     },
     plusItemInCart(state, action: PayloadAction<string>) {
       const pizzaItems = state.items[action.payload]
-      pizzaItems.pizzas.push(pizzaItems.pizzas[0])
-
       pizzaItems.totalPrice += pizzaItems.pizzas[0].price
+      pizzaItems.totalCount = ++pizzaItems.totalCount
 
-      const arr: CartItemType[] = makeArray(state.items)
-
-      state.totalPrice = totalSumSelector(arr)
-      state.totalCount = arr.length
+      state.totalCount = ++state.totalCount
+      state.totalPrice = totalSumSelector(state.items)
     },
     clearCart(state) {
       state.totalCount = 0
