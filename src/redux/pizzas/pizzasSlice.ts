@@ -1,28 +1,25 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ResponseType } from '../../utills'
+import { createSlice } from '@reduxjs/toolkit'
+import { PizzasSliceType } from './types'
+import { asyncFetchPizza } from './actions'
 
-export type PizzasState = {
-  pizzas: Array<ResponseType>
-  isLoading: boolean
-}
-
-const initialState: PizzasState = {
+const initialState: PizzasSliceType = {
   pizzas: [],
   isLoading: false
 }
 
 const pizzasSlice = createSlice({
   name: 'pizzas',
-  initialState: initialState as PizzasState,
-  reducers: {
-    setPizzasInState(state, action: PayloadAction<Array<ResponseType>>) {
+  initialState: initialState as PizzasSliceType,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(asyncFetchPizza.pending, (state) => {
+      state.isLoading = true
+    })
+    builder.addCase(asyncFetchPizza.fulfilled, (state, action) => {
       state.pizzas = action.payload
-    },
-    toggleIsLoading(state, action: PayloadAction<boolean>) {
-      state.isLoading = action.payload
-    }
+      state.isLoading = false
+    })
   }
 })
 
 export default pizzasSlice.reducer
-export const { setPizzasInState, toggleIsLoading } = pizzasSlice.actions

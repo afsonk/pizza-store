@@ -4,8 +4,9 @@ import { Container } from '../../utills'
 import './style.scss'
 import Logo from './Logo'
 import HeaderCart from './HeaderCart'
+import { ReactElement } from 'react'
 
-function Header() {
+function Header(): ReactElement {
   const location = useLocation()
   return (
     <header className='header'>

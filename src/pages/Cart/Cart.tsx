@@ -1,37 +1,43 @@
-import { Navigate, Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useCallback, useEffect } from 'react'
+
 import { Button, Container } from '../../utills'
-import CartList from './CartList'
+import CartList from '../../components/Cart/CartList'
 import { appStateType } from '../../redux'
 import { Arrow } from '../../assets/svg'
 import './style.scss'
 
 function Cart() {
-  const { items, totalCount, totalPrice } = useSelector((state: appStateType) => state.cart)
-  const finalItem = Object.keys(items)
+  const { totalCount, totalPrice } = useSelector((state: appStateType) => state.cart)
   const navigate = useNavigate()
 
-  if (!totalCount) {
-    return <Navigate to='/cartEmpty' />
-  }
+  const navigateBack = useCallback(() => navigate(-1), [navigate])
+  const shouldRedirect = totalCount === 0
+
+  useEffect(() => {
+    if (shouldRedirect) {
+      navigate('/cartEmpty', { replace: true })
+    }
+  }, [shouldRedirect])
 
   return (
-    <main className='cart'>
+    <main className='cart' data-testid='cartPage'>
       <Container>
         <div className='cart__content'>
           <div className='cart__content-top'>
-            <h1 className='cart__header'>
-              <span>{totalCount}</span>
+            <h1 className='cart__header' data-testid='cartHeader'>
+              <span data-testid='cartTotalCount'>{totalCount}</span>
               {totalCount === 1 ? ' Item' : ' Items'}
             </h1>
           </div>
-          <CartList finalItem={finalItem} items={items} />
+          <CartList />
           <div className='cart__bottom'>
             <p className='cart__bottom-text'>
-              Total Price: <span>{totalPrice}$</span>
+              Total Price: <span data-testid='cartTotalPrice'>{totalPrice}$</span>
             </p>
             <div className='cart__bottom-actions'>
-              <Button empty onClick={() => navigate(-1)}>
+              <Button empty onClick={navigateBack}>
                 <Arrow />
                 <span>Go Back</span>
               </Button>

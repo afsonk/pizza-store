@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Button, CartItemType, ContentTypes, ResponseType } from '../../utills'
 import LoadingBlock from './LoadingBlock'
 
@@ -12,13 +12,13 @@ function ContentItem({ contentTypes, handleAddToCart, ...item }: Props) {
   const [selectedSize, setSelectedSize] = useState<string>(() => item.sizes[0])
   const [selectedDough, setSelectedDough] = useState<number>(() => item.types[0])
   const [activePrice, setActivePrice] = useState<number>(0)
-  const [imageLoading, setImageLoading] = useState(true)
+  const [isImageLoading, setIsImageLoading] = useState(true)
 
-  const onPageLoad = () => {
+  const onPageLoad = useCallback(() => {
     const initialSize = item.sizes.find(() => selectedSize === item.sizes[0])
     const index = contentTypes.sizes.indexOf(initialSize!)
     setActivePrice(index)
-  }
+  }, [])
 
   const handleSizeClick = (size: string, index: number): void => {
     setSelectedSize(size)
@@ -26,12 +26,14 @@ function ContentItem({ contentTypes, handleAddToCart, ...item }: Props) {
   }
   const handleDoughClick = (index: number) => {
     if (selectedDough !== index) {
-      setImageLoading(true)
+      setIsImageLoading(true)
       setSelectedDough(index)
     }
   }
 
-  const getItemPrice = (activePrice: number): number => item.price[activePrice]
+  const getItemPrice = (activePrice: number): number => {
+    return item.price[activePrice]
+  }
   const getItemImage = (num: number): string => item.imageUrl[num]
 
   const handleAddPizza = () => {
@@ -45,20 +47,20 @@ function ContentItem({ contentTypes, handleAddToCart, ...item }: Props) {
     }
     handleAddToCart(obj)
   }
-  const handleImageLoad = () => setImageLoading(false)
+  const handleImageLoad = () => setIsImageLoading(false)
 
   useEffect(() => {
     onPageLoad()
-  }, [])
+  }, [onPageLoad])
 
   return (
-    <div className='content__item'>
-      {imageLoading && <LoadingBlock image />}
+    <div className='content__item' data-testid='contentItem'>
+      {isImageLoading && <LoadingBlock image />}
       <img
         className='content__item-image'
         src={getItemImage(selectedDough)}
         alt='pizza'
-        style={{ display: imageLoading ? 'none' : 'block' }}
+        style={{ display: isImageLoading ? 'none' : 'block' }}
         onLoad={handleImageLoad}
       />
       <h2 className='content__item-title'>{item.name}</h2>

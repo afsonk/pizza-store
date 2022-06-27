@@ -17,6 +17,7 @@ function CartPopup() {
           fulled: totalCount,
           empty: !totalCount
         })}
+        data-testid='cartPopup'
       >
         {totalCount ? (
           <>
@@ -27,7 +28,7 @@ function CartPopup() {
                     key={arr[i]}
                     totalPrice={items[item].totalPrice}
                     info={items[item].pizzas[0]}
-                    singleItemCount={items[item].pizzas.length}
+                    singleItemCount={items[item].totalCount}
                     getDough={getDough}
                     getSize={getSize}
                     isPopup
@@ -37,7 +38,7 @@ function CartPopup() {
             </div>
             <div className='cart__popup-bottom'>
               <p>Total Price</p>
-              <span>{totalPrice}$</span>
+              <span data-testid='cartPopupPrice'>{totalPrice}$</span>
             </div>
           </>
         ) : (

@@ -1,5 +1,6 @@
 import { Field } from 'formik'
-import { FocusType } from './Checkout'
+import { FocusType } from '../../pages/Checkout/Checkout'
+import { memo, useCallback } from 'react'
 
 type Props = {
   name: FocusType
@@ -9,15 +10,16 @@ type Props = {
 }
 
 function CustomInput({ name, label, handleFocus, place }: Props) {
-  const handleDateChange = (text: string) => {
+  const handleDateChange = useCallback((text: string) => {
     return text.length === 3 && !text.includes('/')
       ? `${text.substring(0, 2)}/${text.substring(2)}`
       : text
-  }
+  }, [])
+
   return (
     <Field name={name}>
       {({ field: { value, ...rest }, meta }: any) => (
-        <div className='checkout__line'>
+        <div className='checkout__line' data-testid='checkoutLine'>
           <label className='form__label' htmlFor={name}>
             {label}
           </label>
@@ -37,4 +39,4 @@ function CustomInput({ name, label, handleFocus, place }: Props) {
   )
 }
 
-export default CustomInput
+export default memo(CustomInput)

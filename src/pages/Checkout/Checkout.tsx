@@ -1,15 +1,15 @@
 import Cards from 'react-credit-cards'
 import { useSelector } from 'react-redux'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import 'react-credit-cards/lib/styles.scss'
 import './style.scss'
 import { Form, Formik, FormikProps } from 'formik'
 import { makePayment } from '../../redux/checkout/actions'
 import { Container, validationSchema, Button } from '../../utills'
 import { Arrow } from '../../assets/svg'
-import CheckoutLine from './CheckoutLine'
 import { appStateType, useAppDispatch } from '../../redux'
+import CheckoutLinesList from '../../components/Checkout/CheckoutLinesList'
 
 export type initialFormState = {
   number: string
@@ -21,30 +21,30 @@ export type initialFormState = {
 export type FocusType = 'number' | 'name' | 'expiry' | 'cvc'
 
 function Checkout() {
+  const [focus, setFocus] = useState<FocusType>('number')
+  const { totalPrice } = useSelector((state: appStateType) => state.cart)
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
   const initialValues: initialFormState = {
     number: '',
     expiry: '',
     cvc: '',
     name: ''
   }
-  const fieldsArray = [
-    { name: 'number', label: 'Card Number', place: '4242 4242 4242 4242' },
-    { name: 'name', label: 'Cardholder Name', place: 'John Smith' },
-    { name: 'cvc', label: 'CVC', place: '123' },
-    { name: 'expiry', label: 'Expiry', place: '12/25' }
-  ] as Array<{ name: FocusType; label: string; place: string }>
-
-  const [focus, setFocus] = useState<FocusType>('number')
-  const { totalPrice } = useSelector((state: appStateType) => state.cart)
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
 
   const handlePayClick = (values: initialFormState) => {
     dispatch(makePayment(values, totalPrice, navigate))
   }
-  const handleFocus = (el: FocusType) => {
-    setFocus(el)
-  }
+
+  const handleFocus = useCallback(
+    (el: FocusType) => {
+      setFocus(el)
+    },
+    [focus]
+  )
+
+  const goBack = useCallback(() => navigate(-1), [])
 
   if (!totalPrice) {
     return <Navigate to='/' />
@@ -66,21 +66,13 @@ function Checkout() {
               }}
             >
               <Cards {...props.values} focused={focus} placeholders={{ name: 'CARDHOLDER' }} />
-              {fieldsArray.map((el) => (
-                <CheckoutLine
-                  key={el.name}
-                  name={el.name}
-                  label={el.label}
-                  handleFocus={handleFocus}
-                  place={el.place}
-                />
-              ))}
+              <CheckoutLinesList handleFocus={handleFocus} />
               <div className='cart__bottom'>
                 <p className='cart__bottom-text'>
                   Total Price: <span>{totalPrice}$</span>
                 </p>
                 <div className='cart__bottom-actions'>
-                  <Button empty onClick={() => navigate(-1)}>
+                  <Button empty onClick={goBack}>
                     <Arrow />
                     <span>Go Back</span>
                   </Button>

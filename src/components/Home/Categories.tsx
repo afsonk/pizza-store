@@ -1,23 +1,24 @@
 import classnames from 'classnames'
+import { useCallback, useMemo } from 'react'
+import { setActiveCategory } from '../../redux/filter/filterSlice'
+import { useAppDispatch } from '../../redux'
 
 type Props = {
   categories: Array<string>
   activeCategory: null | number
-  setCategory: (payload: number | null) => void
 }
 
-function Categories({ categories, activeCategory, setCategory }: Props) {
-  return (
-    <ul className='categories'>
-      <li
-        className={classnames('category__item', {
-          active: activeCategory === null
-        })}
-        onClick={() => setCategory(null)}
-      >
-        All
-      </li>
-      {categories.map((item, index) => {
+function Categories({ categories, activeCategory }: Props) {
+  const dispatch = useAppDispatch()
+  const setCategory = (payload: null | number) => {
+    dispatch(setActiveCategory(payload))
+  }
+
+  const setInitialCategory = () => setCategory(null)
+
+  const categoriesJSX = useMemo(
+    () =>
+      categories.map((item, index) => {
         return (
           <li
             className={classnames('category__item', {
@@ -29,7 +30,21 @@ function Categories({ categories, activeCategory, setCategory }: Props) {
             {item}
           </li>
         )
-      })}
+      }),
+    [categories, setCategory, activeCategory]
+  )
+
+  return (
+    <ul className='categories' data-testid='categories'>
+      <li
+        className={classnames('category__item', {
+          active: activeCategory === null
+        })}
+        onClick={setInitialCategory}
+      >
+        All
+      </li>
+      {categoriesJSX}
     </ul>
   )
 }

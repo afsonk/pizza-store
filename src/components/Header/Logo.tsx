@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
+import { ReactElement } from 'react'
 
-function Logo() {
+function Logo(): ReactElement {
   return (
     <NavLink to='/' className='header__logo'>
       <img className='logo__image' src={logo} alt='logo' />
