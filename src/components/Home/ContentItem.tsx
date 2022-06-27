@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Button, CartItemType, ContentTypes, ResponseType } from '../../utills'
 import LoadingBlock from './LoadingBlock'
 
@@ -14,11 +14,11 @@ function ContentItem({ contentTypes, handleAddToCart, ...item }: Props) {
   const [activePrice, setActivePrice] = useState<number>(0)
   const [isImageLoading, setIsImageLoading] = useState(true)
 
-  const onPageLoad = () => {
+  const onPageLoad = useCallback(() => {
     const initialSize = item.sizes.find(() => selectedSize === item.sizes[0])
     const index = contentTypes.sizes.indexOf(initialSize!)
     setActivePrice(index)
-  }
+  }, [])
 
   const handleSizeClick = (size: string, index: number): void => {
     setSelectedSize(size)
@@ -31,7 +31,9 @@ function ContentItem({ contentTypes, handleAddToCart, ...item }: Props) {
     }
   }
 
-  const getItemPrice = (activePrice: number): number => item.price[activePrice]
+  const getItemPrice = (activePrice: number): number => {
+    return item.price[activePrice]
+  }
   const getItemImage = (num: number): string => item.imageUrl[num]
 
   const handleAddPizza = () => {
@@ -46,31 +48,6 @@ function ContentItem({ contentTypes, handleAddToCart, ...item }: Props) {
     handleAddToCart(obj)
   }
   const handleImageLoad = () => setIsImageLoading(false)
-
-  const itemSizesJSX = contentTypes.sizes.map((size, index) => (
-    <li
-      className={classnames({
-        active: size === selectedSize,
-        disabled: !item.sizes.includes(size)
-      })}
-      onClick={() => handleSizeClick(size, index)}
-      key={size}
-    >
-      {size}
-    </li>
-  ))
-  const itemTypesJSX = contentTypes.doughTypes.map((dough, index) => (
-    <li
-      className={classnames({
-        active: index === selectedDough,
-        disabled: !item.types.includes(index)
-      })}
-      key={dough}
-      onClick={() => handleDoughClick(index)}
-    >
-      {dough}
-    </li>
-  ))
 
   useEffect(() => {
     onPageLoad()
@@ -88,8 +65,34 @@ function ContentItem({ contentTypes, handleAddToCart, ...item }: Props) {
       />
       <h2 className='content__item-title'>{item.name}</h2>
       <div className='content-types'>
-        <ul className='content-types-list content-types__sizes'>{itemSizesJSX}</ul>
-        <ul className='content-types-list content-types__dough'>{itemTypesJSX}</ul>
+        <ul className='content-types-list content-types__sizes'>
+          {contentTypes.sizes.map((size, index) => (
+            <li
+              className={classnames({
+                active: size === selectedSize,
+                disabled: !item.sizes.includes(size)
+              })}
+              onClick={() => handleSizeClick(size, index)}
+              key={size}
+            >
+              {size}
+            </li>
+          ))}
+        </ul>
+        <ul className='content-types-list content-types__dough'>
+          {contentTypes.doughTypes.map((dough, index) => (
+            <li
+              className={classnames({
+                active: index === selectedDough,
+                disabled: !item.types.includes(index)
+              })}
+              key={dough}
+              onClick={() => handleDoughClick(index)}
+            >
+              {dough}
+            </li>
+          ))}
+        </ul>
       </div>
       <footer className='item-bottom content-item__bottom'>
         <span className='item-bottom__price'>{getItemPrice(activePrice)} USD</span>
