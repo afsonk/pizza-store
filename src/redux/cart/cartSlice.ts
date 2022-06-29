@@ -49,7 +49,7 @@ const cartSlice = createSlice({
     },
     removeItemFromCart(state, action: PayloadAction<string>) {
       const currentPrice = state.items[action.payload].totalPrice
-      const currentCount = state.items[action.payload].pizzas.length
+      const currentCount = state.items[action.payload].totalCount
 
       delete state.items[action.payload]
 
