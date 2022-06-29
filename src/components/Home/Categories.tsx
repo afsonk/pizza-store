@@ -1,7 +1,7 @@
-import classnames from 'classnames'
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import { setActiveCategory } from '../../redux/filter/filterSlice'
 import { useAppDispatch } from '../../redux'
+import { StyledCategories, StyledCategoryItem } from './styles'
 
 type Props = {
   categories: Array<string>
@@ -20,32 +20,28 @@ function Categories({ categories, activeCategory }: Props) {
     () =>
       categories.map((item, index) => {
         return (
-          <li
-            className={classnames('category__item', {
-              active: activeCategory === index
-            })}
+          <StyledCategoryItem
+            active={activeCategory === index}
             key={item}
             onClick={() => setCategory(index)}
           >
             {item}
-          </li>
+          </StyledCategoryItem>
         )
       }),
     [categories, setCategory, activeCategory]
   )
 
   return (
-    <ul className='categories' data-testid='categories'>
-      <li
-        className={classnames('category__item', {
-          active: activeCategory === null
-        })}
+    <StyledCategories data-testid='categories'>
+      <StyledCategoryItem
+        active={activeCategory === null}
         onClick={setInitialCategory}
       >
         All
-      </li>
+      </StyledCategoryItem>
       {categoriesJSX}
-    </ul>
+    </StyledCategories>
   )
 }
 

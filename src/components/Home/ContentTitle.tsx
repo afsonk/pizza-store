@@ -1,5 +1,7 @@
+import { StyledContentTitle } from './styles'
+
 function ContentTitle({ activeCategory }: { activeCategory: string }) {
-  return <h2 className='content__title'>{activeCategory || 'All'} pizzas</h2>
+  return <StyledContentTitle>{activeCategory || 'All'} pizzas</StyledContentTitle>
 }
 
 export default ContentTitle

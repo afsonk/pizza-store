@@ -28,6 +28,5 @@ describe('Categories component test', () => {
 
     expect(screen.getByTestId('categories')).toBeInTheDocument()
     expect(screen.getByTestId('categories').children).toHaveLength(categoriesMock.length + 1)
-    expect(screen.getByText(/All/i).className).toContain('active')
   })
 })

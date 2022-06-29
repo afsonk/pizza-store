@@ -4,6 +4,13 @@ import { Bucket } from '../../assets/svg'
 import { minusItemFromCart, removeItemFromCart, plusItemInCart } from '../../redux/cart/cartSlice'
 import { DoubleButton, CartItemType, getUniqueID } from '../../utills'
 import { memo } from 'react'
+import {
+  StyledCartItem,
+  StyledCartItemDetail,
+  StyledCartItemImage,
+  StyledCartItemInner,
+  StyledCartItemName, StyledCartItemRemove
+} from './styles'
 
 type Props = {
   totalPrice: number
@@ -36,26 +43,24 @@ function CartItem({
   }
 
   return (
-    <div className='cart__item' data-testid='cartItem'>
-      <div
-        className={classnames('cart__item-inner', {
-          popup: isPopup
-        })}
+    <StyledCartItem data-testid='cartItem'>
+      <StyledCartItemInner
+        isPopup={isPopup}
       >
         {isPopup ? (
           <>
-            <img className='cart__item-img' src={info.image} alt='pizza' />
+            <StyledCartItemImage src={info.image} alt='pizza' />
             <div className='cart__detailed'>
               <div className='cart__item-top'>
-                <h4 className='cart__item-name'>{info.name}</h4>
+                <StyledCartItemName className='cart__item-name'>{info.name}</StyledCartItemName>
                 <button className='cart__item-remove' onClick={handleRemoveClick} type='button'>
                   <Bucket />
                 </button>
               </div>
               <div className='cart__item-text'>
-                <p className='cart__item-detail'>
+                <StyledCartItemDetail className='cart__item-detail'>
                   {getSize(info.size)}, {getDough(info.type)}
-                </p>
+                </StyledCartItemDetail>
               </div>
               <div className='cart__item-bottom'>
                 <DoubleButton
@@ -89,14 +94,14 @@ function CartItem({
               <div className='cart__item-price'>
                 <span>{totalPrice}$</span>
               </div>
-              <button className='cart__item-remove' onClick={handleRemoveClick} type='button'>
+              <StyledCartItemRemove onClick={handleRemoveClick} type='button'>
                 <Bucket />
-              </button>
+              </StyledCartItemRemove>
             </div>
           </>
         )}
-      </div>
-    </div>
+      </StyledCartItemInner>
+    </StyledCartItem>
   )
 }
 

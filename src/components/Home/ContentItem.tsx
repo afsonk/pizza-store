@@ -2,6 +2,7 @@ import classnames from 'classnames'
 import { useCallback, useEffect, useState } from 'react'
 import { Button, CartItemType, ContentTypes, ResponseType } from '../../utills'
 import LoadingBlock from './LoadingBlock'
+import { StyledContentItem } from './styles'
 
 type Props = {
   contentTypes: ContentTypes
@@ -54,7 +55,7 @@ function ContentItem({ contentTypes, handleAddToCart, ...item }: Props) {
   }, [onPageLoad])
 
   return (
-    <div className='content__item' data-testid='contentItem'>
+    <StyledContentItem className='content__item' data-testid='contentItem'>
       {isImageLoading && <LoadingBlock image />}
       <img
         className='content__item-image'
@@ -100,7 +101,7 @@ function ContentItem({ contentTypes, handleAddToCart, ...item }: Props) {
           <span>Add to cart</span>
         </Button>
       </footer>
-    </div>
+    </StyledContentItem>
   )
 }
 

@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
+import { StyledContainer } from './styles'
 
-function Container(props: { children: ReactNode }) {
-  return <div className='container' {...props} />
+function Container({ children }: { children: ReactNode }) {
+  return <StyledContainer>{children}</StyledContainer>
 }
 
 export default Container

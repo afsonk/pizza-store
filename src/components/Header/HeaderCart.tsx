@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
+import { isMobile } from 'react-device-detect'
 import { useSelector } from 'react-redux'
 import { useCallback, useState } from 'react'
-import classnames from 'classnames'
 import { CartSVG } from '../../assets/svg'
 import { appStateType } from '../../redux'
+
 import CartPopup from './CartPopup'
+import { StyledHeaderCart } from './styles'
 
 function HeaderCart() {
   const { totalPrice, totalCount } = useSelector((state: appStateType) => state.cart)
@@ -15,11 +17,11 @@ function HeaderCart() {
   }, [])
 
   return (
-    <div
-      className={classnames('mobile', 'header__cart')}
+    <StyledHeaderCart
       onMouseEnter={handleMouseHover}
       onMouseLeave={handleMouseHover}
       data-testid='headerCart'
+      isMobile={isMobile}
     >
       <Link to='/cart' className='button button--cart'>
         <span className='header__cart-price'>{totalPrice} $</span>
@@ -28,7 +30,7 @@ function HeaderCart() {
         <span className='header__cart-count'>{totalCount}</span>
       </Link>
       {isHovered && <CartPopup />}
-    </div>
+    </StyledHeaderCart>
   )
 }
 

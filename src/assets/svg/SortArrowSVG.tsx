@@ -6,6 +6,7 @@ export function SortArrowSVG({ isVisible }: { isVisible: boolean }) {
       className={classnames('sort__arrow', {
         active: isVisible
       })}
+      data-testid='sortArrow'
       width='10'
       height='6'
       viewBox='0 0 10 6'

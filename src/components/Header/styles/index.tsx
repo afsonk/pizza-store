@@ -1,33 +1,53 @@
-@import "../../utills/vars";
+import styled, { css, StyledProps } from 'styled-components'
+import { Link, NavLink } from 'react-router-dom'
 
-.header__inner {
+export const StyledHeaderInner = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 0;
-}
+`
 
-.header__logo {
+export const StyledLogo = styled(NavLink)`
   display: flex;
   align-items: center;
   grid-column-gap: 5px;
   text-decoration: none;
-}
+`
 
-.logo__image {
+export const StyledLogoImage = styled.img`
   width: 100%;
   max-width: 65px;
   height: 65px;
   display: block;
-}
+`
 
-.header__cart {
+export const StyledLogoText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 26px;
+    color: var(--black);
+    font-weight: 800;
+    margin: 3px 0;
+  }
+
+  p {
+    color: var(--grey);
+  }
+`
+
+export const StyledHeaderCart = styled.div`
   display: flex;
   align-items: center;
   position: relative;
   height: 70px;
   @media (max-width: 805px) {
-    &.mobile {
+    ${(props: StyledProps<{isMobile: boolean}>) => props.isMobile && css`{
       position: fixed;
       right: 20px;
       bottom: 20px;
@@ -49,9 +69,9 @@
         padding: 2px;
         line-height: 0.9;
         background-color: #fff;
-        border: 1px solid $orange;
+        border: 1px solid var(--orange);
         border-radius: 50%;
-        color: $orange;
+        color: var(--orange);
       }
 
       .button {
@@ -66,7 +86,7 @@
         height: 56px;
         border-radius: 28px;
         background-image: radial-gradient(100% 100% at 50% 0%, RGB(255, 111, 0) 0%, RGB(247, 91, 0) 100%);
-        box-shadow: RGB(0 0 0 / 20%) 0px 10px 20px;
+        box-shadow: RGB(0 0 0 / 20%) 0 10px 20px;
         transition: all 0.25s ease 0s;
         user-select: none;
         z-index: 3;
@@ -77,19 +97,19 @@
         width: 25px;
         height: 25px;
       }
-    }
+    }`}
   }
-}
+`
 
-.cart__popup {
+export const StyledCartPopup = styled.div`
   position: absolute;
   right: 0;
   top: 60px;
   z-index: 5;
-  padding: 40px;
+  padding: ${(p: StyledProps<{ totalCount?: number }>) => p.totalCount ? '20px 15px' : '40px'};
   margin-top: 10px;
   border-radius: 10px;
-  box-shadow: RGB(6 5 50 / 15%) 0px 4px 22px -6px;;
+  box-shadow: RGB(6 5 50 / 15%) 0 4px 22px -6px;;
   background-color: #fff;
   text-align: center;
 
@@ -102,13 +122,9 @@
     margin-top: 10px;
     font-size: 16px;
   }
+`
 
-  &.fulled {
-    padding: 20px 15px;
-  }
-}
-
-.cart__popup-list {
+export const StyledCartPopupList = styled.div`
   max-height: 340px;
   width: 352px;
   overflow: auto;
@@ -121,30 +137,29 @@
   .cart__item {
     margin: 0 10px;
   }
-}
 
-.cart__popup-list::-webkit-scrollbar {
-  background-color: transparent;
-  width: 16px;
-  cursor: pointer;
-}
-
-
-.cart__popup-list::-webkit-scrollbar-thumb {
-  background-color: #d6d6d6;
-  border-radius: 16px;
-  border: 4px solid #ffffff;
-
-  &:hover {
-    background-color: #acacac;
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 16px;
+    cursor: pointer;
   }
-}
 
-.cart__popup-list::-webkit-scrollbar-button {
-  display: none;
-}
+  &::-webkit-scrollbar-thumb {
+    background-color: #d6d6d6;
+    border-radius: 16px;
+    border: 4px solid #ffffff;
 
-.cart__popup-bottom {
+    &:hover {
+      background-color: #acacac;
+    }
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+`
+
+export const StyledCartPopupBottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -155,25 +170,5 @@
   span {
     color: #ff6900;
   }
-}
-
-.logo__text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  h1 {
-    text-transform: uppercase;
-    font-size: 24px;
-    line-height: 26px;
-    color: $black;
-    font-weight: 800;
-    margin: 3px 0;
-  }
-
-  p {
-    color: $grey;
-  }
-}
-
+`
 

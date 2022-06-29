@@ -1,20 +1,20 @@
 import { useLocation } from 'react-router-dom'
+import { ReactElement } from 'react'
 
 import { Container } from '../../utills'
-import './style.scss'
+import { StyledHeaderInner } from './styles'
 import Logo from './Logo'
 import HeaderCart from './HeaderCart'
-import { ReactElement } from 'react'
 
 function Header(): ReactElement {
   const location = useLocation()
   return (
-    <header className='header'>
+    <header>
       <Container>
-        <div className='header__inner'>
+        <StyledHeaderInner>
           <Logo />
           {location.pathname === '/' && <HeaderCart />}
-        </div>
+        </StyledHeaderInner>
       </Container>
     </header>
   )

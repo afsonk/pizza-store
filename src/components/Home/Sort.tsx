@@ -1,9 +1,10 @@
 import classnames from 'classnames'
-import { SyntheticEvent, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SortArrowSVG } from '../../assets/svg'
 import { SortType } from '../../utills'
 import { setActiveSort } from '../../redux/filter/filterSlice'
 import { useAppDispatch } from '../../redux'
+import { StyledPopupListItem, StyledSort, StyledSortPopup } from './styles'
 
 type Props = {
   sort: Array<SortType>
@@ -38,11 +39,10 @@ function Sort({ sort, activeSort }: Props) {
   }, [])
 
   return (
-    <div className='sort' data-testid='sort'>
+    <StyledSort data-testid='sort'>
       <SortArrowSVG isVisible={isVisible} />
       <b>Sort by:</b>
       <span
-        className='sort__label'
         onClick={handleSortLabelClick}
         ref={sortRef}
         role='toolbar'
@@ -50,29 +50,24 @@ function Sort({ sort, activeSort }: Props) {
       >
         {activeSort}
       </span>
-      <div
-        className={classnames('sort__popup', {
-          active: isVisible
-        })}
-        data-testid='sortPopup'
+      <StyledSortPopup
+        isVisible={isVisible}
       >
         <ul>
           {sort.map((item) => {
             return (
-              <li
+              <StyledPopupListItem
                 key={item}
-                className={classnames({
-                  active: item === activeSort
-                })}
+                isListItemActive={item === activeSort}
                 onClick={() => handleSortClick(item)}
               >
                 {item}
-              </li>
+              </StyledPopupListItem>
             )
           })}
         </ul>
-      </div>
-    </div>
+      </StyledSortPopup>
+    </StyledSort>
   )
 }
 
