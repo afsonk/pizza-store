@@ -34,10 +34,7 @@ function Categories({ categories, activeCategory }: Props) {
 
   return (
     <StyledCategories data-testid='categories'>
-      <StyledCategoryItem
-        active={activeCategory === null}
-        onClick={setInitialCategory}
-      >
+      <StyledCategoryItem active={activeCategory === null} onClick={setInitialCategory}>
         All
       </StyledCategoryItem>
       {categoriesJSX}

@@ -42,17 +42,10 @@ function Sort({ sort, activeSort }: Props) {
     <StyledSort data-testid='sort'>
       <SortArrowSVG isVisible={isVisible} />
       <b>Sort by:</b>
-      <span
-        onClick={handleSortLabelClick}
-        ref={sortRef}
-        role='toolbar'
-        data-testid='sortLabel'
-      >
+      <span onClick={handleSortLabelClick} ref={sortRef} role='toolbar' data-testid='sortLabel'>
         {activeSort}
       </span>
-      <StyledSortPopup
-        isVisible={isVisible}
-      >
+      <StyledSortPopup isVisible={isVisible}>
         <ul>
           {sort.map((item) => {
             return (

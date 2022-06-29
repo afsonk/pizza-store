@@ -33,14 +33,16 @@ export const StyledButtonInDouble = styled.button`
   border: none;
   height: 100%;
   padding: 0 8px;
-  transition: .1s linear;
+  transition: 0.1s linear;
 
-  ${(p: StyledProps<{ disabled: boolean }>) => p.disabled && css`
-    pointer-events: none;
-    opacity: 0.4;
-  `}
+  ${(p: StyledProps<{ disabled: boolean }>) =>
+    p.disabled &&
+    css`
+      pointer-events: none;
+      opacity: 0.4;
+    `}
   svg {
-    fill: #454B54;
+    fill: #454b54;
   }
 
   &:hover {

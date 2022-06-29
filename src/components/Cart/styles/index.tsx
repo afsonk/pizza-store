@@ -17,38 +17,40 @@ export const StyledCartItemInner = styled.div`
     display: block;
   }
 
-  ${(p: StyledProps<{ isPopup: boolean }>) => p.isPopup && css`
-    align-items: flex-start;
+  ${(p: StyledProps<{ isPopup: boolean }>) =>
+    p.isPopup &&
+    css`
+      align-items: flex-start;
 
-    .cart__item-top {
-      display: flex;
-      justify-content: space-between;
+      .cart__item-top {
+        display: flex;
+        justify-content: space-between;
 
-      .cart__item-remove {
-        margin-left: auto;
-        margin-right: 0;
+        .cart__item-remove {
+          margin-left: auto;
+          margin-right: 0;
+        }
       }
-    }
 
-    .cart__item-text {
-      text-align: left;
+      .cart__item-text {
+        text-align: left;
 
-      p {
-        margin-top: 7px;
+        p {
+          margin-top: 7px;
+        }
       }
-    }
 
-    .cart__item-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 10px;
+      .cart__item-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
 
-      .double-button {
-        margin-left: 0;
+        .double-button {
+          margin-left: 0;
+        }
       }
-    }
-  `}
+    `}
 `
 
 export const StyledCartItemImage = styled.img`
@@ -76,18 +78,18 @@ export const StyledCartItemRemove = styled.button`
   cursor: pointer;
   border: none;
   margin: 0 20px;
-  .bucket{
-    path{
+  .bucket {
+    path {
       transform-origin: 17px 5px;
       transition: transform 0.2s ease-in-out 0s, fill;
     }
   }
-  &:hover{
-    .bucket{
-      path{
+  &:hover {
+    .bucket {
+      path {
         fill: var(--orange);
       }
-      path:last-child{
+      path:last-child {
         transform: rotate(10deg);
       }
     }

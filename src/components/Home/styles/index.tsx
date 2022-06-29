@@ -15,7 +15,7 @@ export const StyledCategoryItem = styled.li`
   padding: 0.6rem 1.6rem;
   background-color: var(--light-grey);
   border-radius: 20px;
-  transition: .1s linear;
+  transition: 0.1s linear;
 
   &:hover {
     background-color: #e2e2e2;
@@ -25,14 +25,16 @@ export const StyledCategoryItem = styled.li`
     background-color: #cdcdcd;
   }
 
-  ${(p: StyledProps<{ active: boolean }>) => p.active && css`
-    color: #fff;
-    background-color: #232323;
-
-    &:hover {
+  ${(p: StyledProps<{ active: boolean }>) =>
+    p.active &&
+    css`
+      color: #fff;
       background-color: #232323;
-    }
-  `}
+
+      &:hover {
+        background-color: #232323;
+      }
+    `}
 `
 
 export const StyledContentTitle = styled.h2`
@@ -75,7 +77,8 @@ export const StyledSort = styled.div`
 `
 
 export const StyledSortPopup = styled.div`
-  display: ${(p: StyledProps<{ isVisible?: boolean, isListItemActive?: boolean }>) => p.isVisible ? 'block' : 'none'};
+  display: ${(p: StyledProps<{ isVisible?: boolean; isListItemActive?: boolean }>) =>
+    p.isVisible ? 'block' : 'none'};
   position: absolute;
   width: 160px;
   padding: 5px 0;
@@ -99,58 +102,60 @@ export const StyledPopupListItem = styled.li`
   cursor: pointer;
   width: 100%;
   padding: 12px 20px;
-  transition: .1s linear;
+  transition: 0.1s linear;
 
-  ${(p: StyledProps<{ isListItemActive?: boolean }>) => p.isListItemActive && css`
-    color: var(--orange);
-    background-color: rgba(252, 213, 213, 0.4);
-    font-weight: 500;
-  `}
+  ${(p: StyledProps<{ isListItemActive?: boolean }>) =>
+    p.isListItemActive &&
+    css`
+      color: var(--orange);
+      background-color: rgba(252, 213, 213, 0.4);
+      font-weight: 500;
+    `}
   &:hover {
     background-color: rgba(252, 213, 213, 0.4);
   }
 `
 
 export const StyledContentItem = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-basis: 24.8%;
-    padding: 10px;
-    border-radius: 6px;
-    transition: .1s linear;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 24.8%;
+  padding: 10px;
+  border-radius: 6px;
+  transition: 0.1s linear;
+  text-align: center;
 
-    @media (max-width: 1220px) {
-      flex-basis: 33%;
-    }
+  @media (max-width: 1220px) {
+    flex-basis: 33%;
+  }
+  @media (max-width: 920px) {
+    flex-basis: 48%;
+  }
+  @media (max-width: 630px) {
+    flex-basis: 70%;
+  }
+  @media (max-width: 500px) {
+    flex-basis: 100%;
+  }
+
+  &:hover {
+    box-shadow: RGB(6 5 50 / 15%) 0px 4px 22px -6px;
+  }
+
+  &-image {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    align-self: center;
     @media (max-width: 920px) {
-      flex-basis: 48%;
-    }
-    @media (max-width: 630px) {
-      flex-basis: 70%;
+      max-width: 300px;
     }
     @media (max-width: 500px) {
-      flex-basis: 100%;
+      max-width: 280px;
     }
+  }
 
-    &:hover{
-      box-shadow: RGB(6 5 50 / 15%) 0px 4px 22px -6px;
-    }
-
-    &-image {
-      max-width: 260px;
-      width: 100%;
-      height: auto;
-      align-self: center;
-      @media (max-width: 920px) {
-        max-width: 300px;
-      }
-      @media (max-width: 500px) {
-        max-width: 280px;
-      }
-    }
-
-    &-title {
-      margin-bottom: 1rem;
-    }
+  &-title {
+    margin-bottom: 1rem;
+  }
 `

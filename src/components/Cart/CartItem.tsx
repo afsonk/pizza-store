@@ -9,7 +9,8 @@ import {
   StyledCartItemDetail,
   StyledCartItemImage,
   StyledCartItemInner,
-  StyledCartItemName, StyledCartItemRemove
+  StyledCartItemName,
+  StyledCartItemRemove
 } from './styles'
 
 type Props = {
@@ -44,9 +45,7 @@ function CartItem({
 
   return (
     <StyledCartItem data-testid='cartItem'>
-      <StyledCartItemInner
-        isPopup={isPopup}
-      >
+      <StyledCartItemInner isPopup={isPopup}>
         {isPopup ? (
           <>
             <StyledCartItemImage src={info.image} alt='pizza' />
