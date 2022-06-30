@@ -1,10 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { CartStateItems, identType } from '../cartSlice'
+import { appStateType } from '../../index'
 
-const stateItemSelector = (state: identType) => state.pizzas
-const totalItemsSelector = (state: CartStateItems) => state
+export const stateItemSelector = (state: identType) => state.pizzas
+export const totalItemsSelector = (state: CartStateItems) => state
 
-const totalSumSelector = createSelector(totalItemsSelector, (arr) => {
+export const totalSumSelector = createSelector(totalItemsSelector, (arr) => {
   const preArr: { [s: string]: any } = Object.keys(arr).map((key) => arr[key])
 
   const allCartItems: identType[] = [].concat(...Object.values(preArr))
@@ -12,4 +13,9 @@ const totalSumSelector = createSelector(totalItemsSelector, (arr) => {
   return allCartItems.reduce((acc, next) => acc + next.totalPrice, 0)
 })
 
-export { stateItemSelector, totalItemsSelector, totalSumSelector }
+export const isCartEmptySelector = createSelector(
+  (state: appStateType) => state.cart,
+  (cart) => {
+    return cart.totalCount === 0 && cart.totalPrice === 0 && Object.keys(cart.items).length === 0
+  }
+)

@@ -11,11 +11,13 @@ import { useEffect, useMemo } from 'react'
 import { asyncFetchPizza } from '../../redux/pizzas/actions'
 
 function Home() {
-  const categories: Array<string> = ['Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed']
+  const categories: Array<string> = useMemo(
+    () => ['Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed'],
+    []
+  )
   const sort: Array<SortType> = useMemo(() => ['rating', 'price', 'name'], [])
 
   const { sortBy, activeCategory } = useSelector((state: appStateType) => state?.filterCat)
-  const { name } = useSelector((state: appStateType) => state?.filterCat.sortBy)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function Home() {
       <Container>
         <div className='content__top'>
           <Categories categories={categories} activeCategory={activeCategory} />
-          <Sort sort={sort} activeSort={name} />
+          <Sort sort={sort} activeSort={sortBy.name} />
         </div>
         <ContentTitle activeCategory={categories[activeCategory!]} />
         <PizzasList />

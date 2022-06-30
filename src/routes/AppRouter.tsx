@@ -1,14 +1,37 @@
 import { Route, Routes } from 'react-router-dom'
-import { Cart, CartEmpty, Checkout, CheckoutResult, Home } from '../pages'
+import { lazy, Suspense } from 'react'
+import { Home, Cart } from '../pages'
+
+const CheckoutPage = lazy(() => import('../pages/Checkout/Checkout'))
+const CheckoutResultPage = lazy(() => import('../pages/CheckoutResult/CheckoutResult'))
 
 function AppRouter() {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/cart' element={<Cart />} />
-      <Route path='/cartEmpty' element={<CartEmpty />} />
-      <Route path='/checkout' element={<Checkout />} />
-      <Route path='/checkout/result' element={<CheckoutResult />} />
+
+      <Route
+        path='/cart'
+        element={<Cart />}
+      />
+
+      <Route
+        path='/checkout'
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <CheckoutPage />
+          </Suspense>
+        }
+      />
+
+      <Route
+        path='/checkout/result'
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <CheckoutResultPage />
+          </Suspense>
+        }
+      />
     </Routes>
   )
 }

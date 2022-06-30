@@ -1,7 +1,9 @@
-import Cart from './Cart'
-import { screen } from '@testing-library/react'
-import cartSlice from '../../redux/cart/cartSlice'
+import React from 'react'
 import { configureStore } from '@reduxjs/toolkit'
+import { screen, waitFor } from '@testing-library/react'
+
+import Cart from './Cart'
+import cartSlice from '../../redux/cart/cartSlice'
 import { renderTestApp, renderWithRouterAndRedux } from '../../tests/helpers'
 import filterSlice, { sortByType } from '../../redux/filter/filterSlice'
 import pizzasSlice from '../../redux/pizzas/pizzasSlice'
@@ -98,6 +100,9 @@ describe('Cart page test', () => {
 
     renderTestApp(<Cart />, { store, path: '/cart' })
 
-    expect(screen.getByTestId('cartEmpty')).toBeInTheDocument()
+    waitFor(async () => {
+      const elem = await screen.getByTestId('cartEmpty')
+      expect(elem).toBeInTheDocument()
+    })
   })
 })
