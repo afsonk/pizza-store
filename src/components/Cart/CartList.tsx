@@ -9,10 +9,10 @@ function CartList() {
 
   return (
     <div className='cart__list'>
-      {finalItem.map((item, i, arr) => {
+      {finalItem.map((item) => {
         return (
           <CartItem
-            key={arr[i]}
+            key={items[item].pizzas[0].id}
             totalPrice={items[item].totalPrice}
             info={items[item].pizzas[0]}
             singleItemCount={items[item].totalCount}

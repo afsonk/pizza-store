@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useCallback, useMemo } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { setActiveCategory } from '../../redux/filter/filterSlice'
 import { useAppDispatch } from '../../redux'
 
@@ -12,7 +12,7 @@ function Categories({ categories, activeCategory }: Props) {
   const dispatch = useAppDispatch()
   const setCategory = useCallback((payload: null | number) => {
     dispatch(setActiveCategory(payload))
-  },[])
+  }, [])
 
   const setInitialCategory = () => setCategory(null)
 
@@ -49,4 +49,4 @@ function Categories({ categories, activeCategory }: Props) {
   )
 }
 
-export default Categories
+export default memo(Categories)

@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import { SortArrowSVG } from '../../assets/svg'
 import { SortType } from '../../utills'
 import { setActiveSort } from '../../redux/filter/filterSlice'
@@ -76,4 +76,4 @@ function Sort({ sort, activeSort }: Props) {
   )
 }
 
-export default Sort
+export default memo(Sort)
