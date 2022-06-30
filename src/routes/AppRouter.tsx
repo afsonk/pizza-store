@@ -1,10 +1,9 @@
 import { Route, Routes } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
-import { Home } from '../pages'
+import { Home, Cart } from '../pages'
 
 const CheckoutPage = lazy(() => import('../pages/Checkout/Checkout'))
 const CheckoutResultPage = lazy(() => import('../pages/CheckoutResult/CheckoutResult'))
-const Cart = lazy(() => import('../pages/Cart/Cart'))
 
 function AppRouter() {
   return (
@@ -13,11 +12,7 @@ function AppRouter() {
 
       <Route
         path='/cart'
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <Cart />
-          </Suspense>
-        }
+        element={<Cart />}
       />
 
       <Route
