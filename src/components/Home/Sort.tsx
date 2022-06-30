@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { SyntheticEvent, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SortArrowSVG } from '../../assets/svg'
 import { SortType } from '../../utills'
 import { setActiveSort } from '../../redux/filter/filterSlice'

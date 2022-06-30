@@ -10,9 +10,9 @@ type Props = {
 
 function Categories({ categories, activeCategory }: Props) {
   const dispatch = useAppDispatch()
-  const setCategory = (payload: null | number) => {
+  const setCategory = useCallback((payload: null | number) => {
     dispatch(setActiveCategory(payload))
-  }
+  },[])
 
   const setInitialCategory = () => setCategory(null)
 
